@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 17:03:32 by jimpark           #+#    #+#             */
-/*   Updated: 2022/08/13 17:09:21 by jimpark          ###   ########.fr       */
+/*   Updated: 2022/08/18 18:49:46 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,14 @@ size_t	ft_strlen(const char *s)
 	size_t	i;
 
 	i = 0;
+	if (!s)
+		return (0);
 	while (s[i] != '\0')
 		i++;
 	return (i);
 }
 
+#include <stdio.h>
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
 	size_t	i;
@@ -58,7 +61,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 		{
 			dst[dst_len + i] = src[i];
 			i++;
-		}
+		};
 		dst[dst_len + i] = '\0';
 		return (dst_len + src_len);
 	}
@@ -71,8 +74,10 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	size_t	s1_size;
 	size_t	s2_size;
 
-	if (!s1 || !s2)
+	if (!s1 && !s2)
 		return (0);
+	if (!s1)
+		return ((char *)s2);
 	s1_size = ft_strlen(s1);
 	s2_size = ft_strlen(s2);
 	joined = (char *)malloc(sizeof(char) * (s1_size + s2_size + 1));
@@ -81,4 +86,38 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	ft_strlcpy(joined, s1, s1_size + s2_size + 1);
 	ft_strlcat(joined, s2, s1_size + s2_size + 1);
 	return (joined);
+}
+
+char	*ft_strdup(const char *s1)
+{
+	int		size;
+	char	*dest;
+	int		i;
+
+	size = ft_strlen(s1);
+	dest = (char *)malloc(sizeof(char) * size);
+	if (!dest)
+		return (0);
+	i = 0;
+	while (i < size)
+	{
+		dest[i] = s1[i];
+		i++;
+	}
+	return (dest);
+}
+
+void	*ft_memcpy(void *dst, const void *src, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	if (!dst && !src)
+		return (0);
+	while (i < n)
+	{
+		((unsigned char *)dst)[i] = ((const unsigned char *)src)[i];
+		i++;
+	}
+	return (dst);
 }
