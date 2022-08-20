@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 16:30:41 by jimpark           #+#    #+#             */
-/*   Updated: 2022/08/18 18:53:57 by jimpark          ###   ########.fr       */
+/*   Updated: 2022/08/20 22:33:11 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,26 @@
 char	*read_file(char *save, int fd)
 {
 	char	*buffer;
+	int		buf_len;
+	int		flag;
 
-	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE));
+	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
 		return (0);
-	read(fd, buffer, BUFFER_SIZE);
-	save = ft_strjoin(save, buffer);
+	buf_len = read(fd, buffer, BUFFER_SIZE);
+	if (buf_len < 0)
+		return (0);
+	flag = 0;
+	while (!flag)
+	{
+		buffer[buf_len] = '\0';
+		save = ft_strjoin(save, buffer);
+		if (ft_strchr(save, '\n') == 0)
+			read(fd, buffer, BUFFER_SIZE);
+		else if(ft_strchr(save, '\n') != 0 || buf_len < BUFFER_SIZE)
+			flag = 1;
+	}
+	buffer = NULL;
 	free(buffer);
 	return (save);
 }
@@ -68,7 +82,7 @@ char	*get_next_line(int fd)
 	{
 		if (save[i] == '\n')
 		{
-			temp = ft_strdup(save);
+			temp = save;
 			result = read_line(temp, i + 2);
 			save += i + 1;
 			temp = NULL;
@@ -77,27 +91,26 @@ char	*get_next_line(int fd)
 		}
 		i++;
 	}
-	if (i < str_size)
-		result = last_line(save, i + 1);
+	result = last_line(save, i + 1);
 	return (result);
 }
 
-#include <fcntl.h>
+// #include <fcntl.h>
 
-int main()
-{
-	char *s1;
+// int main()
+// {
+// 	char *s1;
 
-	int main_fd = open("TEXT.txt", O_RDONLY);
-	int main_i = -1;
+// 	int main_fd = open("gnl.txt", O_RDONLY);
+// 	int main_i = -1;
 
-	while (++main_i < 4)
-	{
-		s1 = get_next_line(main_fd);
-		printf("%s", s1);
-		free(s1);
-	}
+// 	while (++main_i < 1)
+// 	{
+// 		s1 = get_next_line(main_fd);
+// 		printf("%s", s1);
+// 		free(s1);
+// 	}
 
-	//system("leaks a.out");
-	return (0);
-}
+// 	//system("leaks a.out");
+// 	return (0);
+// }

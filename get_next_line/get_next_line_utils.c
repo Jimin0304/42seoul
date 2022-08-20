@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 17:03:32 by jimpark           #+#    #+#             */
-/*   Updated: 2022/08/18 18:49:46 by jimpark          ###   ########.fr       */
+/*   Updated: 2022/08/20 19:43:26 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-#include <stdio.h>
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
 	size_t	i;
@@ -88,36 +87,18 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (joined);
 }
 
-char	*ft_strdup(const char *s1)
+char	*ft_strchr(const char *s, int c)
 {
-	int		size;
-	char	*dest;
-	int		i;
-
-	size = ft_strlen(s1);
-	dest = (char *)malloc(sizeof(char) * size);
-	if (!dest)
-		return (0);
-	i = 0;
-	while (i < size)
-	{
-		dest[i] = s1[i];
-		i++;
-	}
-	return (dest);
-}
-
-void	*ft_memcpy(void *dst, const void *src, size_t n)
-{
-	size_t	i;
+	int	i;
 
 	i = 0;
-	if (!dst && !src)
-		return (0);
-	while (i < n)
+	while (s[i])
 	{
-		((unsigned char *)dst)[i] = ((const unsigned char *)src)[i];
+		if (s[i] == (char)c)
+			return ((char *)&s[i]);
 		i++;
 	}
-	return (dst);
+	if (s[i] == (char)c)
+		return ((char *)&s[i]);
+	return (0);
 }
