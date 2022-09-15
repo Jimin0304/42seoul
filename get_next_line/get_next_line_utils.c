@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 17:03:32 by jimpark           #+#    #+#             */
-/*   Updated: 2022/08/20 19:43:26 by jimpark          ###   ########.fr       */
+/*   Updated: 2022/09/15 18:13:47 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ size_t	ft_strlen(const char *s)
 		i++;
 	return (i);
 }
-
+#include <stdio.h>
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
 	size_t	i;
@@ -33,12 +33,15 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	res = ft_strlen(src);
 	if (dstsize == 0)
 		return (res);
+	//printf("1. %s: \n", src);
 	while ((src[i] != '\0') && (i < dstsize - 1))
 	{
 		dst[i] = src[i];
 		i++;
 	}
+	//printf("2. %s: \n", src);
 	dst[i] = '\0';
+	//printf("3. %s: \n", src);
 	return (res);
 }
 
@@ -101,4 +104,24 @@ char	*ft_strchr(const char *s, int c)
 	if (s[i] == (char)c)
 		return ((char *)&s[i]);
 	return (0);
+}
+
+char	*ft_strdup(const char *s1)
+{
+	int		size;
+	char	*dest;
+	int		i;
+
+	size = ft_strlen(s1);
+	dest = (char *)malloc(sizeof(char) * (size + 1));
+	if (!dest)
+		return (0);
+	i = 0;
+	while (s1[i])
+	{
+		dest[i] = s1[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
 }

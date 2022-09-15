@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 16:56:15 by jimpark           #+#    #+#             */
-/*   Updated: 2022/08/20 21:54:18 by jimpark          ###   ########.fr       */
+/*   Updated: 2022/09/15 18:36:19 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,14 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-char	*buffer_realloc(char *buffer, int fd);
-char	*make_new_buffer(char *buffer, int str_size, char *save);
+// char	*buffer_realloc(char *buffer, int fd);
+// char	*make_new_buffer(char *buffer, int str_size, char *save);
 char	*get_next_line(int fd);
 char	*ft_strjoin(char const *s1, char const *s2);
 size_t	ft_strlen(const char *s);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 char	*ft_strchr(const char *s, int c);
+char	*ft_strdup(const char *s1);
 
 #endif
