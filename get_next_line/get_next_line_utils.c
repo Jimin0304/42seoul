@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 17:03:32 by jimpark           #+#    #+#             */
-/*   Updated: 2022/09/15 18:13:47 by jimpark          ###   ########.fr       */
+/*   Updated: 2022/09/18 14:37:40 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ size_t	ft_strlen(const char *s)
 		i++;
 	return (i);
 }
-#include <stdio.h>
+
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
 	size_t	i;
@@ -33,15 +33,12 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	res = ft_strlen(src);
 	if (dstsize == 0)
 		return (res);
-	//printf("1. %s: \n", src);
 	while ((src[i] != '\0') && (i < dstsize - 1))
 	{
 		dst[i] = src[i];
 		i++;
 	}
-	//printf("2. %s: \n", src);
 	dst[i] = '\0';
-	//printf("3. %s: \n", src);
 	return (res);
 }
 
@@ -79,7 +76,10 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (!s1 && !s2)
 		return (0);
 	if (!s1)
-		return ((char *)s2);
+	{
+		joined = ft_strdup(s2);
+		return (joined);
+	}
 	s1_size = ft_strlen(s1);
 	s2_size = ft_strlen(s2);
 	joined = (char *)malloc(sizeof(char) * (s1_size + s2_size + 1));

@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 16:45:45 by jimpark           #+#    #+#             */
-/*   Updated: 2022/09/15 21:54:10 by jimpark          ###   ########.fr       */
+/*   Updated: 2022/09/18 14:40:34 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ char	*read_line(char *save, int len)
 	if (!result)
 		return (0);
 	ft_strlcpy(result, save, len + 1);
-	//printf("%s", save);
 	return (result);
 }
 
@@ -71,12 +70,9 @@ char	*get_next_line(int fd)
 	{
 		if (save[i] == '\n')
 		{
-			//printf("%s", save);
 			result = read_line(save, i + 1);
 			temp = save;
 			save = ft_strdup(&(save[i + 1]));
-			//printf("%s", save);
-			//printf("result:%s\nsave:%s", result, save);
 			// free (temp);
 			return (result);
 		}
