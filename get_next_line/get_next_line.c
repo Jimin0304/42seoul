@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 16:45:45 by jimpark           #+#    #+#             */
-/*   Updated: 2022/09/18 14:40:34 by jimpark          ###   ########.fr       */
+/*   Updated: 2022/09/21 23:26:39 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,7 @@ char	*read_file(char *save, int fd)
 	{
 		buf_len = read(fd, buffer, BUFFER_SIZE);
 		if (buf_len <= 0)
-		{
-			free (buffer);
-			return (save);
-		}
+			break ;
 		buffer[buf_len] = '\0';
 		temp = save;
 		save = ft_strjoin(save, buffer);
@@ -39,6 +36,8 @@ char	*read_file(char *save, int fd)
 			break ;
 	}
 	free(buffer);
+	if (buf_len < 0)
+		return (0);
 	return (save);
 }
 
