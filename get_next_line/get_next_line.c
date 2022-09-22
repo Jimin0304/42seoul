@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 16:45:45 by jimpark           #+#    #+#             */
-/*   Updated: 2022/09/21 23:40:01 by jimpark          ###   ########.fr       */
+/*   Updated: 2022/09/22 19:44:29 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ char	*read_file(char *save, int fd)
 	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
 		return (0);
-	buf_len = 1;
-	while (buf_len)
+	while (1)
 	{
 		buf_len = read(fd, buffer, BUFFER_SIZE);
 		if (buf_len <= 0)
@@ -36,7 +35,6 @@ char	*read_file(char *save, int fd)
 			break ;
 	}
 	free(buffer);
-	//마지막에 파일의 끝을 읽고 null을 내보내야 하는 곳에서 계속 leaks 뜨는거 고치기
 	if (buf_len < 0)
 		return (0);
 	return (save);
@@ -49,6 +47,11 @@ char	*read_line(char *save, int len)
 	result = (char *)malloc(sizeof(char) * (len + 1));
 	if (!result)
 		return (0);
+	if (*save == '\0')
+	{
+		free (result);
+		return (0);
+	}
 	ft_strlcpy(result, save, len + 1);
 	return (result);
 }
@@ -73,7 +76,7 @@ char	*get_next_line(int fd)
 			result = read_line(save, i + 1);
 			temp = save;
 			save = ft_strdup(&(save[i + 1]));
-			// free (temp);
+			free (temp);
 			return (result);
 		}
 		i++;
@@ -83,26 +86,3 @@ char	*get_next_line(int fd)
 	save = NULL;
 	return (result);
 }
-
-
-
-// #include <fcntl.h>
-
-// int main()
-// {
-// 	char *s1;
-
-// 	int main_fd = open("TEXT.txt", O_RDONLY);
-// 	int main_i = -1;
-// 	int i = 0;
-
-// 	while (++main_i < 2)
-// 	{
-// 		s1 = get_next_line(main_fd);
-// 		printf("%s", s1);
-// 		free(s1);
-// 	}
-
-// 	//system("leaks a.out");
-// 	return (0);
-// }
