@@ -6,12 +6,31 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 16:45:45 by jimpark           #+#    #+#             */
-/*   Updated: 2022/09/22 19:44:29 by jimpark          ###   ########.fr       */
+/*   Updated: 2022/09/22 20:53:14 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
+
+char	*ft_strdup(const char *s1)
+{
+	int		size;
+	char	*dest;
+	int		i;
+
+	size = ft_strlen(s1);
+	dest = (char *)malloc(sizeof(char) * (size + 1));
+	if (!dest)
+		return (0);
+	i = 0;
+	while (s1[i])
+	{
+		dest[i] = s1[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
+}
 
 char	*read_file(char *save, int fd)
 {
@@ -30,6 +49,8 @@ char	*read_file(char *save, int fd)
 		buffer[buf_len] = '\0';
 		temp = save;
 		save = ft_strjoin(save, buffer);
+		if (!save)
+			return (0);
 		free (temp);
 		if (ft_strchr(save, '\n') != 0 || buf_len < BUFFER_SIZE)
 			break ;
@@ -56,30 +77,40 @@ char	*read_line(char *save, int len)
 	return (result);
 }
 
+char	*get_save(char *save, int i)
+{
+	char	*temp;
+
+	temp = save;
+	save = ft_strdup(&(save[i + 1]));
+	if (!save)
+		return (0);
+	free (temp);
+	return (save);
+}
+
 char	*get_next_line(int fd)
 {
 	static char	*save;
 	int			i;
 	char		*result;
-	char		*temp;
 
 	if (fd < 0 || BUFFER_SIZE < 1)
 		return (0);
 	save = read_file(save, fd);
 	if (!save)
 		return (0);
-	i = 0;
-	while (save[i] != '\0')
+	i = -1;
+	while (save[++i] != '\0')
 	{
 		if (save[i] == '\n')
 		{
 			result = read_line(save, i + 1);
-			temp = save;
-			save = ft_strdup(&(save[i + 1]));
-			free (temp);
+			save = get_save(save, i);
+			if (!save)
+				return (0);
 			return (result);
 		}
-		i++;
 	}
 	result = read_line(save, i);
 	free(save);

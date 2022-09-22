@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 17:03:32 by jimpark           #+#    #+#             */
-/*   Updated: 2022/09/18 14:37:40 by jimpark          ###   ########.fr       */
+/*   Updated: 2022/09/22 20:05:15 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 		{
 			dst[dst_len + i] = src[i];
 			i++;
-		};
+		}
 		dst[dst_len + i] = '\0';
 		return (dst_len + src_len);
 	}
@@ -104,24 +104,4 @@ char	*ft_strchr(const char *s, int c)
 	if (s[i] == (char)c)
 		return ((char *)&s[i]);
 	return (0);
-}
-
-char	*ft_strdup(const char *s1)
-{
-	int		size;
-	char	*dest;
-	int		i;
-
-	size = ft_strlen(s1);
-	dest = (char *)malloc(sizeof(char) * (size + 1));
-	if (!dest)
-		return (0);
-	i = 0;
-	while (s1[i])
-	{
-		dest[i] = s1[i];
-		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
 }

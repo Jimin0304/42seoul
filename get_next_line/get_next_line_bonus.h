@@ -6,12 +6,12 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 20:25:32 by jimpark           #+#    #+#             */
-/*   Updated: 2022/09/09 20:26:37 by jimpark          ###   ########.fr       */
+/*   Updated: 2022/09/22 20:04:27 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __GET_NEXT_LINE_BONUS_H__
-# define __GET_NEXT_LINE_BONUS_H__
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
 typedef struct s_list
 {
