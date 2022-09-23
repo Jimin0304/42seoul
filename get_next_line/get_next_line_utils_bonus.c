@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 20:25:25 by jimpark           #+#    #+#             */
-/*   Updated: 2022/09/22 20:06:37 by jimpark          ###   ########.fr       */
+/*   Updated: 2022/09/23 19:36:36 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,106 @@ size_t	ft_strlen(const char *s)
 	while (s[i] != '\0')
 		i++;
 	return (i);
+}
+
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+{
+	size_t	i;
+	size_t	res;
+
+	i = 0;
+	res = ft_strlen(src);
+	if (dstsize == 0)
+		return (res);
+	while ((src[i] != '\0') && (i < dstsize - 1))
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (res);
+}
+
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+{
+	size_t	i;
+	size_t	dst_len;
+	size_t	src_len;
+
+	i = 0;
+	if (!dst)
+		dst_len = 0;
+	else
+		dst_len = ft_strlen(dst);
+	src_len = ft_strlen(src);
+	if (dstsize > dst_len)
+	{
+		while ((src[i] != '\0') && (i < dstsize - dst_len - 1))
+		{
+			dst[dst_len + i] = src[i];
+			i++;
+		}
+		dst[dst_len + i] = '\0';
+		return (dst_len + src_len);
+	}
+	return (dstsize + src_len);
+}
+
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	char	*joined;
+	size_t	s1_size;
+	size_t	s2_size;
+
+	if (!s1 && !s2)
+		return (0);
+	if (!s1)
+	{
+		joined = ft_strdup(s2);
+		return (joined);
+	}
+	s1_size = ft_strlen(s1);
+	s2_size = ft_strlen(s2);
+	joined = (char *)malloc(sizeof(char) * (s1_size + s2_size + 1));
+	if (!joined)
+		return (0);
+	ft_strlcpy(joined, s1, s1_size + s2_size + 1);
+	ft_strlcat(joined, s2, s1_size + s2_size + 1);
+	return (joined);
+}
+
+char	*ft_strchr(const char *s, int c)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == (char)c)
+			return ((char *)&s[i]);
+		i++;
+	}
+	if (s[i] == (char)c)
+		return ((char *)&s[i]);
+	return (0);
+}
+
+char	*ft_strdup(const char *s1)
+{
+	int		size;
+	char	*dest;
+	int		i;
+
+	size = ft_strlen(s1);
+	dest = (char *)malloc(sizeof(char) * (size + 1));
+	if (!dest)
+		return (0);
+	i = 0;
+	while (s1[i])
+	{
+		dest[i] = s1[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
 }
