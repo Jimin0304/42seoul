@@ -6,40 +6,30 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 20:25:25 by jimpark           #+#    #+#             */
-/*   Updated: 2022/09/23 19:36:36 by jimpark          ###   ########.fr       */
+/*   Updated: 2022/10/27 20:24:21 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-size_t	ft_strlen(const char *s)
-{
-	size_t	i;
-
-	i = 0;
-	if (!s)
-		return (0);
-	while (s[i] != '\0')
-		i++;
-	return (i);
-}
-
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
 	size_t	i;
-	size_t	res;
+	size_t	count;
 
+	count = 0;
+	while (src[count] != '\0')
+		count++;
 	i = 0;
-	res = ft_strlen(src);
 	if (dstsize == 0)
-		return (res);
+		return (count);
 	while ((src[i] != '\0') && (i < dstsize - 1))
 	{
 		dst[i] = src[i];
 		i++;
 	}
 	dst[i] = '\0';
-	return (res);
+	return (count);
 }
 
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
@@ -49,11 +39,15 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	size_t	src_len;
 
 	i = 0;
-	if (!dst)
-		dst_len = 0;
-	else
-		dst_len = ft_strlen(dst);
-	src_len = ft_strlen(src);
+	dst_len = 0;
+	src_len = 0;
+	if (dst)
+	{
+		while (dst[dst_len] != '\0')
+			dst_len++;
+	}
+	while (src[src_len] != '\0')
+		src_len++;
 	if (dstsize > dst_len)
 	{
 		while ((src[i] != '\0') && (i < dstsize - dst_len - 1))
@@ -80,8 +74,12 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		joined = ft_strdup(s2);
 		return (joined);
 	}
-	s1_size = ft_strlen(s1);
-	s2_size = ft_strlen(s2);
+	s1_size = 0;
+	s2_size = 0;
+	while (s1[s1_size] != '\0')
+		s1_size++;
+	while (s2[s2_size] != '\0')
+		s2_size++;
 	joined = (char *)malloc(sizeof(char) * (s1_size + s2_size + 1));
 	if (!joined)
 		return (0);
@@ -112,7 +110,9 @@ char	*ft_strdup(const char *s1)
 	char	*dest;
 	int		i;
 
-	size = ft_strlen(s1);
+	size = 0;
+	while (s1[size] != '\0')
+		size++;
 	dest = (char *)malloc(sizeof(char) * (size + 1));
 	if (!dest)
 		return (0);

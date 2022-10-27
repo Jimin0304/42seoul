@@ -6,11 +6,13 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 20:25:37 by jimpark           #+#    #+#             */
-/*   Updated: 2022/09/23 19:45:11 by jimpark          ###   ########.fr       */
+/*   Updated: 2022/10/27 21:39:46 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
+// #include <fcntl.h>
+// #include <stdio.h>
 
 t_list	*find_node(int fd, t_list *head)
 {
@@ -22,6 +24,7 @@ t_list	*find_node(int fd, t_list *head)
 		if (!head)
 			return (0);
 		head->fd = fd;
+		head->save = NULL;
 		head->prev = NULL;
 		return (head);
 	}
@@ -40,12 +43,12 @@ t_list	*find_node(int fd, t_list *head)
 	return (newnode);
 }
 
-// void	free_node(t_list *fdnode)
-// {
-// 	free(fdnode->save);
-// 	fdnode->save = NULL;
-// 	free(fdnode);
-// }
+void	free_node(t_list *fdnode)
+{
+	free(fdnode->save);
+	fdnode->save = NULL;
+	free(fdnode);
+}
 
 char	*read_file(char *save, int fd)
 {
@@ -129,5 +132,21 @@ char	*get_next_line(int fd)
 	free(fdnode->save);
 	fdnode->save = NULL;
 	free(fdnode);
+	// fdnode = NULL;
 	return (result);
 }
+
+// int main(void) {
+// 	int fd;
+// 	char *str;
+
+// 	fd = open("text.txt", O_RDONLY);
+// 	str = get_next_line(fd);
+// 	printf("%p %s", str, str);
+// 	str = get_next_line(fd);
+// 	printf("%p %s", str, str);
+// 	str = get_next_line(fd);
+// 	printf("%p %s", str, str);
+// 	str = get_next_line(fd);
+// 	printf("%p %s", str, str);
+// }
