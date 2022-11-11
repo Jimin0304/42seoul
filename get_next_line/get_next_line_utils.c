@@ -6,13 +6,13 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 17:03:32 by jimpark           #+#    #+#             */
-/*   Updated: 2022/09/22 20:05:15 by jimpark          ###   ########.fr       */
+/*   Updated: 2022/11/11 19:38:01 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *s)
+size_t	ft_strlen(char *s)
 {
 	size_t	i;
 
@@ -24,7 +24,7 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+size_t	ft_strlcpy(char *dst, char *src, size_t dstsize)
 {
 	size_t	i;
 	size_t	res;
@@ -42,7 +42,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	return (res);
 }
 
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+size_t	ft_strlcat(char *dst, char *src, size_t dstsize)
 {
 	size_t	i;
 	size_t	dst_len;
@@ -67,7 +67,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	return (dstsize + src_len);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*joined;
 	size_t	s1_size;
@@ -78,6 +78,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (!s1)
 	{
 		joined = ft_strdup(s2);
+		if (!joined)
+			return (0);
 		return (joined);
 	}
 	s1_size = ft_strlen(s1);
@@ -87,10 +89,11 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (0);
 	ft_strlcpy(joined, s1, s1_size + s2_size + 1);
 	ft_strlcat(joined, s2, s1_size + s2_size + 1);
+	free (s1);
 	return (joined);
 }
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strchr(char *s, int c)
 {
 	int	i;
 

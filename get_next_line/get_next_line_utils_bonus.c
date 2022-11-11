@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 20:25:25 by jimpark           #+#    #+#             */
-/*   Updated: 2022/10/27 20:24:21 by jimpark          ###   ########.fr       */
+/*   Updated: 2022/11/11 19:37:57 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (!s1)
 	{
 		joined = ft_strdup(s2);
+		if (!joined)
+			return (0);
 		return (joined);
 	}
 	s1_size = 0;
