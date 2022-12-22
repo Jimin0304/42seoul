@@ -6,7 +6,7 @@
 #    By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/23 00:02:38 by jimpark           #+#    #+#              #
-#    Updated: 2022/12/23 03:47:40 by jimpark          ###   ########.fr        #
+#    Updated: 2022/12/23 06:11:24 by jimpark          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,10 +27,8 @@ SRCS = ft_printf.c \
 
 OBJECTS = $(SRCS:.c=.o)
 
-OBJ_FILES = $(OBJECTS)
-
-$(NAME) : $(OBJ_FILES)
-		$(AR) $(NAME) $(OBJ_FILES)
+$(NAME) : $(OBJECTS)
+		$(AR) $(NAME) $(OBJECTS)
 
 all : $(NAME)
 
