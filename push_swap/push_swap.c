@@ -12,27 +12,54 @@
 
 #include "push_swap.h"
 
-void	parse_argv(char *argv, t_info *info)
+int	sort_arr_check(int *arr, int size)
 {
-	ft_split
+	int	i;
+	int	j;
+	int	*tmp;
+	int	check;
+
+	i = -1;
+	j = -1;
+	check = 0;
+	while (++i < size - 1)
+	{
+		while (++j < size - 1 - i)
+		{
+			if (arr[j] > arr[j + 1])
+			{
+				tmp = arr[j];
+				arr[j] = arr[j + 1];
+				arr[j + 1] = tmp;
+				check++;
+				free (tmp);
+			}
+			else if (arr[j] == arr[j + 1])
+				print_err(-1);
+		}
+	}
+	return (check);
+}
+
+void	check_arr(t_info *info)
+{
+
 }
 
 int	main(int argc, char *argv[])
 {
 	t_info	info;
-	int		i;
-	int		j;
+	int		*arr_argv;
+	int		arr_size;
 
 	if (argc < 2)
-		print_err();
-	i = 0;
-	while (argv[i])
-	{
-		j = 0;
-		if (ft_strchr(argv[i][0], '"') != 0 || \
-		ft_strchr(argv[i][ft_strlen(argv[i]) - 1], '"') != 0)
-			parse_argv(argv[i], &info);
-		ft_atoi(argv[i]);
-		i++;
-	}
+		print_err(-1);
+	set_info(&info);
+	parse_argv(argv, &arr_argv);
+	arr_size = ft_strlen(arr_argv);
+	if (arr_size < 2)
+		print_err(1);
+	arr_to_stack(&info, &arr_argv);
+	if (sort_arr_check(info.arr, arr_size) == 0)
+		print_err (1);
 }

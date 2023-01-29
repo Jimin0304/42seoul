@@ -10,8 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*print_err(void)
+char	*print_err(int i)
 {
-	ft_printf("Error\n");
+	if (i == -1)
+		ft_printf("Error\n");
 	exit(1);
+}
+
+void	free_all(char **arr, int i)
+{
+	int	j;
+
+	j = 0;
+	while (j <= i)
+		free(arr[j++]);
+	free(arr);
 }

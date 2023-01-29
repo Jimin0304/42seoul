@@ -25,9 +25,9 @@ int	ft_atoi(char *str)
 		str++;
 	}
 	if (*str != '\0')
-		return (print_err());
+		return (print_err(-1));
 	result *= pos;
 	if ((result > 2147483647) || (result < -2147483648))
-		return (print_err());
+		return (print_err(-1));
 	return (result);
 }

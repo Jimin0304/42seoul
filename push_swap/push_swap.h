@@ -34,6 +34,15 @@ typedef struct s_info
 	struct s_node	*bottom_b;
 }				t_info;
 
-char	*print_err(void);
+char	*print_err(int i);
+int		word_count(char *s, char c);
+void	free_all(char **arr, int i);
+int		parse_argv(char **argv, t_info *info);
+void	set_info(t_info *info);
+void	push_top(t_info *info, t_node *top, int content);
+void	push_bottom(t_info *info, t_node *bottom, int content);
+void	pop_top(t_info *info, t_node *top);
+void	pop_bottom(t_info *info, t_node *bottom);
+int		arr_to_stack(t_info *info);
 
 #endif

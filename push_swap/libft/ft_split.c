@@ -20,7 +20,7 @@ static int	cmp(char s, char c)
 		return (-1);
 }
 
-static int	word_count(char *s, char c)
+int	word_count(char *s, char c)
 {
 	int	i;
 	int	cnt;
