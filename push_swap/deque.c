@@ -8,7 +8,7 @@ t_node	*init_deque(t_node *newnode, int content)
 	return (newnode);
 }
 
-void	push_top(t_info *info, t_node *top, int content)
+void	push_top(t_info *info, t_node *top, t_node *bottom, int content)
 {
 	t_node	*newnode;
 
@@ -16,18 +16,24 @@ void	push_top(t_info *info, t_node *top, int content)
 	if (!newnode)
 		print_err(-1);
 	if (top == NULL)
+	{
 		top = init_deque(&newnode, content);
+		bottom = top;
+	}
 	else
 	{
 		top->prev = newnode;
 		newnode->next = top;
 		newnode->prev = NULL;
 		newnode->content = content;
+		while (top->next)
+			top = top->next;
+		bottom = top;
 		top = newnode;
-	}
+	}	
 }
 
-void	push_bottom(t_info *info, t_node *bottom, int content)
+void	push_bottom(t_info *info, t_node* top, t_node *bottom, int content)
 {
 	t_node	*newnode;
 
@@ -35,43 +41,57 @@ void	push_bottom(t_info *info, t_node *bottom, int content)
 	if (!newnode)
 		print_err(-1);
 	if (bottom == NULL)
+	{
 		bottom = init_deque(&newnode, content);
+		top = bottom;
+	}
 	else
 	{
 		bottom->next = newnode;
 		newnode->prev = bottom;
 		newnode->next = NULL;
 		newnode->content = content;
+		while (bottom->prev)
+			bottom = bottom->prev;
+		top = bottom;
 		bottom = newnode;
 	}
 }
 
 void	pop_top(t_info *info, t_node *top)
 {
-	t_node	*next_top;
 	t_node	*tmp;
 
-	if (top == NULL)
-		return ;
-	tmp = top;
-	next_top = top->next;
-	next_top->prev = NULL;
-	top->next = NULL;
-	top = next_top;
-	free(tmp);
+	if (top->next)
+	{
+		tmp = top;
+		top = tmp->next;
+		tmp->next = NULL;
+		top->prev = NULL;
+		free(tmp);
+	}
+	else
+	{
+		free(top);
+		top = NULL;
+	}
 }
 
 void	pop_bottom(t_info *info, t_node *bottom)
 {
-	t_node	*prev_bottom;
 	t_node	*tmp;
 
-	if (bottom == NULL)
-		return ;
-	tmp = bottom;
-	prev_bottom = bottom->prev;
-	prev_bottom->next = NULL;
-	bottom->prev = NULL;
-	bottom = prev_bottom;
-	free(tmp);
+	if (bottom->prev)
+	{
+		tmp = bottom;
+		bottom = tmp->prev;
+		tmp->prev = NULL;
+		bottom->next = NULL;
+		free (tmp);
+	}
+	else
+	{
+		free (bottom);
+		bottom = NULL;
+	}
 }

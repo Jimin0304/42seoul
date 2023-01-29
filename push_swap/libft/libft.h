@@ -14,7 +14,7 @@
 # define LIBFT_H
 
 # include <stdlib.h>
-# include <io.h> //unistd로 바꾸기
+# include <unistd.h>
 # include <stdint.h>
 
 typedef struct s_list
