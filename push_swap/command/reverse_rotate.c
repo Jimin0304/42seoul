@@ -1,34 +1,46 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   reverse_rotate.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/30 20:46:26 by jimpark           #+#    #+#             */
+/*   Updated: 2023/01/30 20:47:22 by jimpark          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
-void	rra(t_info *info)
+void	rra(t_info *a_info)
 {
-	if (info->bottom_a == NULL)
+	if (a_info->bottom == NULL)
 		return ;
-	push_top(info, info->top_a, info->bottom_a, info->bottom_a->content);
-	pop_bottom(info, info->bottom_a);
+	push_top(a_info, a_info->bottom->content);
+	pop_bottom(a_info);
 	ft_printf("rra\n");
 }
 
-void	rrb(t_info *info)
+void	rrb(t_info *b_info)
 {
-	if (info->bottom_b == NULL)
+	if (b_info->bottom == NULL)
 		return ;
-	push_top(info, info->top_b, info->bottom_b, info->bottom_b->content);
-	pop_bottom(info, info->bottom_b);
+	push_top(b_info, b_info->bottom->content);
+	pop_bottom(b_info);
 	ft_printf("rrb\n");
 }
 
-void	rrr(t_info *info)
+void	rrr(t_info *a_info, t_info *b_info)
 {
-	if (info->bottom_a)
+	if (a_info->bottom)
 	{
-	    push_top(info, info->top_a, info->bottom_a, info->bottom_a->content);
-	    pop_bottom(info, info->bottom_a);
+		push_top(a_info, a_info->bottom->content);
+		pop_bottom(a_info);
 	}
-	if (info->bottom_b)
+	if (b_info->bottom)
 	{
-		push_top(info, info->top_b, info->bottom_b, info->bottom_b->content);
-	    pop_bottom(info, info->bottom_b);
+		push_top(b_info, b_info->bottom->content);
+		pop_bottom(b_info);
 	}
 	ft_printf("rrr\n");
 }

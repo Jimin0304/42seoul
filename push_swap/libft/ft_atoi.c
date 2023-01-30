@@ -6,9 +6,11 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 17:31:21 by jimpark           #+#    #+#             */
-/*   Updated: 2023/01/28 23:09:59 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/01/30 16:36:33 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+int	print_err(int i);
 
 int	ft_atoi(char *str)
 {
@@ -17,8 +19,11 @@ int	ft_atoi(char *str)
 
 	pos = 1;
 	result = 0;
-	if (*str++ == '-')
+	if (*str == '-')
+	{
 		pos = -1;
+		str++;
+	}
 	while (('0' <= *str) && (*str <= '9'))
 	{
 		result = result * 10 + (*str - '0');

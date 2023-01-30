@@ -6,13 +6,13 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 19:15:37 by jimpark           #+#    #+#             */
-/*   Updated: 2022/07/25 23:50:46 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/01/30 16:26:37 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(char *s1, char *set)
 {
 	int		start;
 	int		end;

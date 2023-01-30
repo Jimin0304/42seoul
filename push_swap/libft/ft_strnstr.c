@@ -6,13 +6,13 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 18:50:27 by jimpark           #+#    #+#             */
-/*   Updated: 2022/08/03 00:42:03 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/01/30 16:43:49 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+char	*ft_strnstr(char *haystack, char *needle, size_t len)
 {
 	size_t	h;
 	size_t	n;

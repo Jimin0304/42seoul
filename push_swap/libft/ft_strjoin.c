@@ -6,13 +6,13 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 18:44:07 by jimpark           #+#    #+#             */
-/*   Updated: 2022/07/25 21:12:23 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/01/30 16:43:20 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*joined;
 	size_t	s1_size;

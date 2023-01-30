@@ -1,44 +1,56 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   swap.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/30 20:46:31 by jimpark           #+#    #+#             */
+/*   Updated: 2023/01/30 20:46:31 by jimpark          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
-void	sa(t_info *info)
+void	sa(t_info *a_info)
 {
 	int	tmp;
 
-	if (info->top_a == NULL)
+	if (a_info->top == NULL)
 		return ;
-	tmp = info->top_a->content;
-	info->top_a->content = info->top_a->next->content;
-	info->top_a->next->content = tmp;
+	tmp = a_info->top->content;
+	a_info->top->content = a_info->top->next->content;
+	a_info->top->next->content = tmp;
 	ft_printf("sa\n");
 }
 
-void	sb(t_info *info)
+void	sb(t_info *b_info)
 {
 	int	tmp;
 
-	if (info->top_b == NULL)
+	if (b_info->top == NULL)
 		return ;
-	tmp = info->top_b->content;
-	info->top_b->content = info->top_b->next->content;
-	info->top_b->next->content = tmp;
+	tmp = b_info->top->content;
+	b_info->top->content = b_info->top->next->content;
+	b_info->top->next->content = tmp;
 	ft_printf("sb\n");
 }
 
-void	ss(t_info *info)
+void	ss(t_info *a_info, t_info *b_info)
 {
 	int	tmp;
 
-	if (info->top_a)
+	if (a_info->top)
 	{
-		tmp = info->top_a->content;
-		info->top_a->content = info->top_a->next->content;
-		info->top_a->next->content = tmp;
+		tmp = a_info->top->content;
+		a_info->top->content = a_info->top->next->content;
+		a_info->top->next->content = tmp;
 	}
-	if (info->top_b)
+	if (b_info->top)
 	{
-		tmp = info->top_b->content;
-		info->top_b->content = info->top_b->next->content;
-		info->top_b->next->content = tmp;
+		tmp = b_info->top->content;
+		b_info->top->content = b_info->top->next->content;
+		b_info->top->next->content = tmp;
 	}
 	ft_printf("ss\n");
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   deque.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/30 20:46:38 by jimpark           #+#    #+#             */
+/*   Updated: 2023/01/30 20:46:39 by jimpark          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 t_node	*init_deque(t_node *newnode, int content)
@@ -8,90 +20,90 @@ t_node	*init_deque(t_node *newnode, int content)
 	return (newnode);
 }
 
-void	push_top(t_info *info, t_node *top, t_node *bottom, int content)
+void	push_top(t_info *info, int content)
 {
 	t_node	*newnode;
 
 	newnode = (t_node *)malloc(sizeof(t_node));
 	if (!newnode)
 		print_err(-1);
-	if (top == NULL)
+	if (info->top == NULL)
 	{
-		top = init_deque(&newnode, content);
-		bottom = top;
+		info->top = init_deque(newnode, content);
+		info->bottom = info->top;
 	}
 	else
 	{
-		top->prev = newnode;
-		newnode->next = top;
+		newnode->next = info->top;
+		info->top->prev = newnode;
 		newnode->prev = NULL;
 		newnode->content = content;
-		while (top->next)
-			top = top->next;
-		bottom = top;
-		top = newnode;
-	}	
+		while (info->top->next)
+			info->top = info->top->next;
+		info->bottom = info->top;
+		info->top = newnode;
+	}
 }
 
-void	push_bottom(t_info *info, t_node* top, t_node *bottom, int content)
+void	push_bottom(t_info *info, int content)
 {
 	t_node	*newnode;
 
 	newnode = (t_node *)malloc(sizeof(t_node));
 	if (!newnode)
 		print_err(-1);
-	if (bottom == NULL)
+	if (info->bottom == NULL)
 	{
-		bottom = init_deque(&newnode, content);
-		top = bottom;
+		info->bottom = init_deque(newnode, content);
+		info->top = info->bottom;
 	}
 	else
 	{
-		bottom->next = newnode;
-		newnode->prev = bottom;
+		newnode->prev = info->bottom;
+		info->bottom->next = newnode;
 		newnode->next = NULL;
 		newnode->content = content;
-		while (bottom->prev)
-			bottom = bottom->prev;
-		top = bottom;
-		bottom = newnode;
+		while (info->bottom->prev)
+			info->bottom = info->bottom->prev;
+		info->top = info->bottom;
+		info->bottom = newnode;
 	}
 }
 
-void	pop_top(t_info *info, t_node *top)
+void	pop_top(t_info *info)
 {
 	t_node	*tmp;
 
-	if (top->next)
+	if (info->top->next)
 	{
-		tmp = top;
-		top = tmp->next;
+		tmp = info->top;
+		info->top = tmp->next;
 		tmp->next = NULL;
-		top->prev = NULL;
+		info->top->prev = NULL;
 		free(tmp);
 	}
 	else
 	{
-		free(top);
-		top = NULL;
+		free(info->top);
+		info->top = NULL;
 	}
 }
 
-void	pop_bottom(t_info *info, t_node *bottom)
+void	pop_bottom(t_info *info)
 {
 	t_node	*tmp;
 
-	if (bottom->prev)
+	if (info->bottom->prev)
 	{
-		tmp = bottom;
-		bottom = tmp->prev;
+		tmp = info->bottom;
+		info->bottom = tmp->prev;
 		tmp->prev = NULL;
-		bottom->next = NULL;
+		info->bottom->next = NULL;
 		free (tmp);
 	}
 	else
 	{
-		free (bottom);
-		bottom = NULL;
+		free (info->bottom);
+		info->bottom = NULL;
 	}
 }

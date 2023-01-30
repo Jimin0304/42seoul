@@ -6,19 +6,19 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 18:30:26 by jimpark           #+#    #+#             */
-/*   Updated: 2022/08/03 21:50:20 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/01/30 21:12:38 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+void	*ft_memchr(void *s, int c, size_t n)
 {
-	size_t				i;
-	const unsigned char	*str;
+	size_t			i;
+	unsigned char	*str;
 
 	i = 0;
-	str = (const unsigned char *)s;
+	str = (unsigned char *)s;
 	while (i < n)
 	{
 		if (str[i] == (unsigned char)c)
