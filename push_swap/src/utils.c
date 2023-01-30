@@ -6,11 +6,11 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 22:02:40 by jimpark           #+#    #+#             */
-/*   Updated: 2023/01/30 16:23:47 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/01/30 21:33:06 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
 int	print_err(int i)
 {

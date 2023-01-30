@@ -6,11 +6,11 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 20:46:26 by jimpark           #+#    #+#             */
-/*   Updated: 2023/01/30 20:47:22 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/01/30 21:47:22 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../include/push_swap.h"
 
 void	rra(t_info *a_info)
 {

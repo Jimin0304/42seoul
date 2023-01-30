@@ -6,11 +6,11 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 20:46:38 by jimpark           #+#    #+#             */
-/*   Updated: 2023/01/30 20:46:39 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/01/30 21:39:07 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
 t_node	*init_deque(t_node *newnode, int content)
 {

@@ -6,15 +6,15 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 22:02:10 by jimpark           #+#    #+#             */
-/*   Updated: 2023/01/30 21:01:15 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/01/30 22:10:41 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "../ft_printf/ft_printf.h"
-# include "../libft/libft.h"
+# include "../lib/ft_printf/ft_printf.h"
+# include "../lib/libft/libft.h"
 
 typedef struct s_node
 {
