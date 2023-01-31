@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 21:02:49 by jimpark           #+#    #+#             */
-/*   Updated: 2023/01/30 21:32:58 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/01/31 21:51:11 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,16 +66,13 @@ void	set_info(t_info *info)
 
 int	arr_to_stack(t_info *a_info, int *arr)
 {
-	int		i;
-	t_node	*newnode;
+	int	i;
 
 	i = 0;
-	newnode = (t_node *)malloc(sizeof(t_node));
-	if (!newnode)
-		print_err(-1);
-	a_info->top = init_deque(newnode, arr[i]);
-	a_info->bottom = a_info->top;
-	while (arr[++i])
+	while (arr[i])
+	{
 		push_bottom(a_info, arr[i]);
+		i++;
+	}
 	return (0);
 }

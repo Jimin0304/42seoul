@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 20:46:38 by jimpark           #+#    #+#             */
-/*   Updated: 2023/01/30 21:39:07 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/01/31 21:37:32 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	push_top(t_info *info, int content)
 		info->bottom = info->top;
 		info->top = newnode;
 	}
+	info->size++;
 }
 
 void	push_bottom(t_info *info, int content)
@@ -68,6 +69,7 @@ void	push_bottom(t_info *info, int content)
 		info->top = info->bottom;
 		info->bottom = newnode;
 	}
+	info->size++;
 }
 
 void	pop_top(t_info *info)
@@ -87,6 +89,7 @@ void	pop_top(t_info *info)
 		free(info->top);
 		info->top = NULL;
 	}
+	info->size--;
 }
 
 void	pop_bottom(t_info *info)
@@ -106,4 +109,5 @@ void	pop_bottom(t_info *info)
 		free (info->bottom);
 		info->bottom = NULL;
 	}
+	info->size--;
 }

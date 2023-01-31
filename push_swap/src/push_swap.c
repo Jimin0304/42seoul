@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 22:01:33 by jimpark           #+#    #+#             */
-/*   Updated: 2023/01/30 21:33:02 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/01/31 23:24:07 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,39 @@ int	sort_arr_check(t_info *info, int *arr, int size)
 	return (check);
 }
 
+void	a_to_b(t_info *a_info, t_info *b_info, int min, int size)
+{
+	int	pivot1;
+	int	pivot2;
+	int	tmp;
+	int	i;
+
+	if (size == 1)
+		return ;
+	tmp = size - min;
+	pivot1 = a_info->arr[(size - min) / 3];
+	pivot2 = a_info->arr[size - (size / 3)];
+	i = 0;
+	while (i++ <= a_info->size)
+	{
+		if (pivot1 <= a_info->top->content && a_info->top->content < pivot2)
+			pb(a_info, b_info);
+		else if (a_info->top->content < pivot1)
+		{
+			pb(a_info, b_info);
+			rb(b_info);
+		}
+		else
+			ra(a_info);
+	}
+	a_to_b(a_info, b_info, size - (size / 3), size);
+}
+
+void	quicksort(t_info *a_info, t_info *b_info, int size)
+{
+	a_to_b(a_info, b_info, 0, size);
+}
+
 int	main(int argc, char *argv[])
 {
 	t_info	a_info;
@@ -62,4 +95,5 @@ int	main(int argc, char *argv[])
 	arr_to_stack(&a_info, arr);
 	if (sort_arr_check(&a_info, arr, arr_size) == 0)
 		print_err (1);
+	quicksort(&a_info, &b_info, arr_size - 1);
 }
