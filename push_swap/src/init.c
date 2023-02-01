@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 21:02:49 by jimpark           #+#    #+#             */
-/*   Updated: 2023/01/31 21:51:11 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/02/01 16:29:41 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,20 @@ void	set_info(t_info *info)
 {
 	info->arr = NULL;
 	info->size = 0;
+	info->ra_count = 0;
+	info->rb_count = 0;
+	info->pa_count = 0;
+	info->pb_count = 0;
 	info->top = NULL;
 	info->bottom = NULL;
+}
+
+void	set_count_info(t_info *a_info, t_info *b_info)
+{
+	a_info->ra_count = 0;
+	b_info->rb_count = 0;
+	a_info->pa_count = 0;
+	b_info->pb_count = 0;
 }
 
 int	arr_to_stack(t_info *a_info, int *arr)

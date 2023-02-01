@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 20:46:28 by jimpark           #+#    #+#             */
-/*   Updated: 2023/01/31 21:46:34 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/02/01 15:41:13 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	ra(t_info *a_info)
 		return ;
 	push_bottom(a_info, a_info->top->content);
 	pop_top(a_info);
+	a_info->ra_count++;
 	ft_printf("ra\n");
 }
 
@@ -27,6 +28,7 @@ void	rb(t_info *b_info)
 		return ;
 	push_bottom(b_info, b_info->top->content);
 	pop_top(b_info);
+	b_info->rb_count++;
 	ft_printf("rb\n");
 }
 

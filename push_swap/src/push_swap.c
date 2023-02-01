@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 22:01:33 by jimpark           #+#    #+#             */
-/*   Updated: 2023/01/31 23:24:07 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/02/01 16:38:15 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,37 +41,59 @@ int	sort_arr_check(t_info *info, int *arr, int size)
 	return (check);
 }
 
-void	a_to_b(t_info *a_info, t_info *b_info, int min, int size)
+void	reverse_rotate(t_info *a_info, t_info *b_info, int a, int b)
+{
+	while (a-- & b--)
+		rrr(a_info, b_info);
+	while (a--)
+		rra(a_info);
+	while (b--)
+		rrb(b_info);
+}
+
+void	b_to_a(t_info *a_info, t_info *b_info, int r, int start, int size)
 {
 	int	pivot1;
 	int	pivot2;
-	int	tmp;
-	int	i;
 
-	if (size == 1)
-		return ;
-	tmp = size - min;
-	pivot1 = a_info->arr[(size - min) / 3];
-	pivot2 = a_info->arr[size - (size / 3)];
-	i = 0;
-	while (i++ <= a_info->size)
+	if (size < 3)
 	{
-		if (pivot1 <= a_info->top->content && a_info->top->content < pivot2)
-			pb(a_info, b_info);
-		else if (a_info->top->content < pivot1)
-		{
-			pb(a_info, b_info);
-			rb(b_info);
-		}
-		else
-			ra(a_info);
+		sort_below_three(a_info, b_info);
+		pa(a_info, b_info);
+		pa(a_info, b_info);
+		pa(a_info, b_info);
+		return ;
 	}
-	a_to_b(a_info, b_info, size - (size / 3), size);
+
 }
 
-void	quicksort(t_info *a_info, t_info *b_info, int size)
+void	a_to_b(t_info *a_info, t_info *b_info, int r, int start, int size)
 {
-	a_to_b(a_info, b_info, 0, size);
+	int	pivot1;
+	int	pivot2;
+
+	if (size < 3)
+	{
+		sort_below_three(a_info, b_info);
+		return ;
+	}
+	pivot1 = a_info->arr[(start + size) / 3];
+	pivot2 = a_info->arr[(start + size) / 3 * 2];
+	while (r--)
+	{
+		if (a_info->top->content > pivot2)
+			ra(a_info);
+		else
+		{
+			pb(a_info, b_info);
+			if (b_info->top->content >= pivot1)
+				rb(b_info);
+		}
+	}
+	reverse_rotate(a_info, b_info, a_info->ra_count, b_info->rb_count);
+	a_to_b(a_info, b_info, a_info->ra_count, pivot2, a_info->size);
+	b_to_a(a_info, b_info, b_info->rb_count, pivot2, b_info->size);
+	b_to_a(a_info, b_info, b_info->pb_count - b_info->rb_count, pivot2, b_info->size);
 }
 
 int	main(int argc, char *argv[])
@@ -95,5 +117,5 @@ int	main(int argc, char *argv[])
 	arr_to_stack(&a_info, arr);
 	if (sort_arr_check(&a_info, arr, arr_size) == 0)
 		print_err (1);
-	quicksort(&a_info, &b_info, arr_size - 1);
+	a_to_b(&a_info, &b_info, arr_size, 0, arr_size);
 }

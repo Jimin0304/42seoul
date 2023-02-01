@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 22:02:10 by jimpark           #+#    #+#             */
-/*   Updated: 2023/01/30 22:10:41 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/02/01 16:30:12 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@ typedef struct s_info
 {
 	int				*arr;
 	int				size;
+	int				pa_count;
+	int				pb_count;
+	int				ra_count;
+	int				rb_count;
 	struct s_node	*top;
 	struct s_node	*bottom;
 }				t_info;
@@ -54,5 +58,6 @@ void	rr(t_info *a_info, t_info *b_info);
 void	rra(t_info *a_info);
 void	rrb(t_info *b_info);
 void	rrr(t_info *a_info, t_info *b_info);
+void	set_count_info(t_info *a_info, t_info *b_info);
 
 #endif
