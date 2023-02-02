@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 22:01:33 by jimpark           #+#    #+#             */
-/*   Updated: 2023/02/01 16:38:15 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/02/02 20:03:38 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,37 +51,77 @@ void	reverse_rotate(t_info *a_info, t_info *b_info, int a, int b)
 		rrb(b_info);
 }
 
-void	b_to_a(t_info *a_info, t_info *b_info, int r, int start, int size)
+void	sort_below_three(t_info *a_info, int size)
 {
-	int	pivot1;
-	int	pivot2;
-
-	if (size < 3)
-	{
-		sort_below_three(a_info, b_info);
-		pa(a_info, b_info);
-		pa(a_info, b_info);
-		pa(a_info, b_info);
+	if (size == 1)
 		return ;
+	else if (size == 2)
+	{
+		if (a_info->top->content < a_info->top->next->content)
+			return ;
+		sa(a_info);
 	}
+	else
+	{
+		if (a_info->top->content < a_info->top->next->content && \
+		a_info->top->next->content < a_info->top->next->next->content)
+			return ;
+		while (size--)
+		{
+			if ()
 
+		}
+	}
 }
 
-void	a_to_b(t_info *a_info, t_info *b_info, int r, int start, int size)
+void	b_to_a(t_info *a_info, t_info *b_info, int r, int start)
 {
 	int	pivot1;
 	int	pivot2;
 
-	if (size < 3)
+	set_count_info(a_info, b_info);
+	if (r < 4)
 	{
-		sort_below_three(a_info, b_info);
+		while (r--)
+			pa(a_info, b_info);
+		sort_below_three(a_info, b_info->pa_count);
 		return ;
 	}
-	pivot1 = a_info->arr[(start + size) / 3];
-	pivot2 = a_info->arr[(start + size) / 3 * 2];
+	pivot1 = a_info->arr[start + (r / 3)];
+	pivot2 = a_info->arr[start + (r / 3 * 2)];
 	while (r--)
 	{
-		if (a_info->top->content > pivot2)
+		if (b_info->top->content <= pivot1)
+			rb(b_info);
+		else
+		{
+			pa(a_info, b_info);
+			if (a_info->top->content <= pivot2)
+				ra(a_info);
+		}
+	}
+	a_to_b(a_info, b_info, b_info->pa_count - a_info->ra_count, pivot2);
+	reverse_rotate(a_info, b_info, a_info->ra_count, b_info->rb_count);
+	a_to_b(a_info, b_info, a_info->ra_count, pivot2);
+	b_to_a(a_info, b_info, b_info->rb_count, pivot1);
+}
+
+void	a_to_b(t_info *a_info, t_info *b_info, int r, int start)
+{
+	int	pivot1;
+	int	pivot2;
+
+	set_count_info(a_info, b_info);
+	if (r < 4)
+	{
+		sort_below_three(a_info, r);
+		return ;
+	}
+	pivot1 = a_info->arr[start + (r / 3)];
+	pivot2 = a_info->arr[start + (r / 3 * 2)];
+	while (r--)
+	{
+		if (a_info->top->content >= pivot2)
 			ra(a_info);
 		else
 		{
@@ -91,9 +131,9 @@ void	a_to_b(t_info *a_info, t_info *b_info, int r, int start, int size)
 		}
 	}
 	reverse_rotate(a_info, b_info, a_info->ra_count, b_info->rb_count);
-	a_to_b(a_info, b_info, a_info->ra_count, pivot2, a_info->size);
-	b_to_a(a_info, b_info, b_info->rb_count, pivot2, b_info->size);
-	b_to_a(a_info, b_info, b_info->pb_count - b_info->rb_count, pivot2, b_info->size);
+	a_to_b(a_info, b_info, a_info->ra_count, pivot2);
+	b_to_a(a_info, b_info, b_info->rb_count, pivot1);
+	b_to_a(a_info, b_info, a_info->pb_count - b_info->rb_count, pivot1);
 }
 
 int	main(int argc, char *argv[])
@@ -117,5 +157,5 @@ int	main(int argc, char *argv[])
 	arr_to_stack(&a_info, arr);
 	if (sort_arr_check(&a_info, arr, arr_size) == 0)
 		print_err (1);
-	a_to_b(&a_info, &b_info, arr_size, 0, arr_size);
+	a_to_b(&a_info, &b_info, arr_size, 0);
 }
