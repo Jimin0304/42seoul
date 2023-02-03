@@ -18,6 +18,8 @@ SRCS = 	$(SRC_DIR)deque.c \
 		$(SRC_DIR)init.c \
 		$(SRC_DIR)push_swap.c \
 		$(SRC_DIR)utils.c \
+		$(SRC_DIR)sort_three.c \
+		$(SRC_DIR)quicksort.c \
 		$(COMMAND_DIR)push.c \
 		$(COMMAND_DIR)reverse_rotate.c \
 		$(COMMAND_DIR)rotate.c \
@@ -30,7 +32,7 @@ all : $(NAME)
 $(NAME) : $(OBJECTS)
 			@make -C $(FT_PRINTF_DIR)
 			@make -C $(LIBFT_DIR)
-			$(CC) $(CFLAGS) $(OBJECTS) $(HEADER) $(LIBFT_FLAG) $(FT_PRINTF_FLAG) -o $(NAME)
+			$(CC) $(CFLAGS) -g -fsanitize=address $(OBJECTS) $(HEADER) $(LIBFT_FLAG) $(FT_PRINTF_FLAG) -o $(NAME)
 
 clean :
 	$(RM) $(OBJECTS)
