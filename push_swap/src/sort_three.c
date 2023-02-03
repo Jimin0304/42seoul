@@ -6,15 +6,15 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 09:00:00 by jimpark           #+#    #+#             */
-/*   Updated: 2023/02/03 13:48:35 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/02/03 18:08:27 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void	first_third_second(t_info *a_info, int init)
+void	first_third_second(t_info *a_info)
 {
-	if (init == 1)
+	if (a_info->size == 3)
 	{
 		rra(a_info);
 		sa(a_info);
@@ -30,9 +30,9 @@ void	second_first_third(t_info *a_info)
 	sa(a_info);
 }
 
-void	second_third_first(t_info *a_info, t_info *b_info, int init)
+void	second_third_first(t_info *a_info, t_info *b_info)
 {
-	if (init == 1)
+	if (a_info->size == 3)
 	{
 		rra(a_info);
 		return ;
@@ -43,9 +43,9 @@ void	second_third_first(t_info *a_info, t_info *b_info, int init)
 	sa(a_info);
 }
 
-void	third_first_second(t_info *a_info, t_info *b_info, int init)
+void	third_first_second(t_info *a_info, t_info *b_info)
 {
-	if (init == 1)
+	if (a_info->size == 3)
 	{
 		ra(a_info);
 		return ;
@@ -56,9 +56,9 @@ void	third_first_second(t_info *a_info, t_info *b_info, int init)
 	pa(a_info, b_info);
 }
 
-void	third_second_first(t_info *a_info, t_info *b_info, int init)
+void	third_second_first(t_info *a_info, t_info *b_info)
 {
-	if (init == 1)
+	if (a_info->size == 3)
 	{
 		ra(a_info);
 		sa(a_info);

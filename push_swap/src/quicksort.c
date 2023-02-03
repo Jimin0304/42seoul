@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 14:21:31 by jimpark           #+#    #+#             */
-/*   Updated: 2023/02/03 14:23:14 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/02/03 18:08:06 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,21 @@ void	reverse_rotate(t_info *a_info, t_info *b_info, int a, int b)
 	}
 }
 
-void	sort_three(t_info *a, t_info *b, int first, int second, int third, int init)
+void	sort_three(t_info *a, t_info *b, int first, int second, int third)
 {
-	if (first < third && third < second)
-		first_third_second(a, init);
-	else if (second < first && first < third)
+	if (first < second && second > third && third > first)
+		first_third_second(a);
+	else if (first > second && second < third && third > first)
 		second_first_third(a);
-	else if (first < second && third < first)
-		second_third_first(a, b, init);
-	else if (second < third && third < first)
-		third_first_second(a, b, init);
-	else if (third < second && second < first)
-		third_second_first(a, b, init);
+	else if (first < second && second > third && third < first)
+		second_third_first(a, b);
+	else if (first > second && second < third && third < first)
+		third_first_second(a, b);
+	else if (first > second && second > third && third < first)
+		third_second_first(a, b);
 }
 
-void	sort_below_three(t_info *a_info, t_info *b_info, int size, int init)
+void	sort_below_three(t_info *a_info, t_info *b_info, int size)
 {
 	int	first;
 	int	second;
@@ -67,9 +67,9 @@ void	sort_below_three(t_info *a_info, t_info *b_info, int size, int init)
 		else
 		{
 			third = a_info->top->next->next->content;
-			if (first < second && second < third)
+			if (first < second && second < third && third > first)
 				return ;
-			sort_three(a_info, b_info, first, second ,third, init);
+			sort_three(a_info, b_info, first, second, third);
 		}
 	}
 }
@@ -92,7 +92,7 @@ void	sort_below_five(t_info *a_info, t_info *b_info, int size)
 			sa(a_info);
 	}
 	else
-		sort_below_three(a_info, b_info, 3, 1);
+		sort_below_three(a_info, b_info, 3);
 	if (b_info->size == 1)
 		pa(a_info, b_info);
 	else
@@ -106,11 +106,10 @@ void	sort_below_five(t_info *a_info, t_info *b_info, int size)
 
 void	b_to_a(t_info *a_info, t_info *b_info, int r, int start)
 {
-	int	pivot1;
-	int	pivot2;
 	int	ra_count;
 	int	rb_count;
 	int	pa_count;
+	int	tmp;
 
 	ra_count = 0;
 	rb_count = 0;
@@ -122,14 +121,13 @@ void	b_to_a(t_info *a_info, t_info *b_info, int r, int start)
 			pa(a_info, b_info);
 			pa_count++;
 		}
-		sort_below_three(a_info, b_info, pa_count, 0);
+		sort_below_three(a_info, b_info, pa_count);
 		return ;
 	}
-	pivot1 = a_info->arr[start + (r / 3)];
-	pivot2 = a_info->arr[start + (r / 3 * 2)];
+	tmp = r / 3;
 	while (r-- > 0)
 	{
-		if (b_info->top->content <= pivot1)
+		if (b_info->top->content < a_info->arr[start + tmp])
 		{
 			rb(b_info);
 			rb_count++;
@@ -138,40 +136,38 @@ void	b_to_a(t_info *a_info, t_info *b_info, int r, int start)
 		{
 			pa(a_info, b_info);
 			pa_count++;
-			if (a_info->top->content <= pivot2)
+			if (a_info->top->content < a_info->arr[start + tmp * 2])
 			{
 				ra(a_info);
 				ra_count++;
 			}
 		}
 	}
-	a_to_b(a_info, b_info, pa_count - ra_count, pivot2);
+	a_to_b(a_info, b_info, pa_count - ra_count, start + tmp * 2);
 	reverse_rotate(a_info, b_info, ra_count, rb_count);
-	a_to_b(a_info, b_info, ra_count, pivot2);
-	b_to_a(a_info, b_info, rb_count, pivot1);
+	a_to_b(a_info, b_info, ra_count, start + tmp);
+	b_to_a(a_info, b_info, rb_count, start);
 }
 
 void	a_to_b(t_info *a_info, t_info *b_info, int r, int start)
 {
-	int	pivot1;
-	int	pivot2;
 	int	ra_count;
 	int	rb_count;
 	int	pb_count;
+	int tmp;
 
 	ra_count = 0;
 	rb_count = 0;
 	pb_count = 0;
 	if (r < 4)
 	{
-		sort_below_three(a_info, b_info, r, 0);
+		sort_below_three(a_info, b_info, r);
 		return ;
 	}
-	pivot1 = a_info->arr[start + (r / 3)];
-	pivot2 = a_info->arr[start + (r / 3 * 2)];
+	tmp = r / 3;
 	while (r-- > 0)
 	{
-		if (a_info->top->content >= pivot2)
+		if (a_info->top->content > a_info->arr[start + tmp * 2])
 		{
 			ra(a_info);
 			ra_count++;
@@ -180,7 +176,7 @@ void	a_to_b(t_info *a_info, t_info *b_info, int r, int start)
 		{
 			pb(a_info, b_info);
 			pb_count++;
-			if (b_info->top->content >= pivot1)
+			if (b_info->top->content > a_info->arr[start + tmp])
 			{
 				rb(b_info);
 				rb_count++;
@@ -188,7 +184,7 @@ void	a_to_b(t_info *a_info, t_info *b_info, int r, int start)
 		}
 	}
 	reverse_rotate(a_info, b_info, ra_count, rb_count);
-	a_to_b(a_info, b_info, ra_count, pivot2);
-	b_to_a(a_info, b_info, rb_count, pivot1);
-	b_to_a(a_info, b_info, pb_count - rb_count, pivot1);
+	a_to_b(a_info, b_info, ra_count, start + tmp * 2);
+	b_to_a(a_info, b_info, rb_count, start + tmp);
+	b_to_a(a_info, b_info, pb_count - rb_count, start);
 }

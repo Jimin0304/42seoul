@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 22:02:10 by jimpark           #+#    #+#             */
-/*   Updated: 2023/02/03 14:25:45 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/02/03 16:43:34 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,16 @@ void	rr(t_info *a_info, t_info *b_info);
 void	rra(t_info *a_info);
 void	rrb(t_info *b_info);
 void	rrr(t_info *a_info, t_info *b_info);
-void	first_third_second(t_info *a_info, int init);
+void	first_third_second(t_info *a_info);
 void	second_first_third(t_info *a_info);
-void	second_third_first(t_info *a_info, t_info *b_info, int init);
-void	third_first_second(t_info *a_info, t_info *b_info, int init);
-void	third_second_first(t_info *a_info, t_info *b_info, int init);
+void	second_third_first(t_info *a_info, t_info *b_info);
+void	third_first_second(t_info *a_info, t_info *b_info);
+void	third_second_first(t_info *a_info, t_info *b_info);
 void	a_to_b(t_info *a_info, t_info *b_info, int r, int start);
 void	b_to_a(t_info *a_info, t_info *b_info, int r, int start);
 void	sort_below_five(t_info *a_info, t_info *b_info, int size);
-void	sort_below_three(t_info *a_info, t_info *b_info, int size, int init);
-void	sort_three(t_info *a, t_info *b, int first, int second, int third, int init);
+void	sort_below_three(t_info *a_info, t_info *b_info, int size);
+void	sort_three(t_info *a, t_info *b, int first, int second, int third);
 void	reverse_rotate(t_info *a_info, t_info *b_info, int a, int b);
 
 #endif
