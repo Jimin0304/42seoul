@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 22:01:33 by jimpark           #+#    #+#             */
-/*   Updated: 2023/02/05 17:26:39 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/02/05 21:57:21 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	quicksort(t_info *a_info, t_info *b_info, int r, int start)
 	ra_count = count_arr[0];
 	pb_count = count_arr[1];
 	rb_count = count_arr[2];
+	free (count_arr);
 	a_to_b(a_info, b_info, ra_count, start + r / 3 * 2);
 	b_to_a(a_info, b_info, rb_count, start + r / 3);
 	b_to_a(a_info, b_info, pb_count - rb_count, start);
@@ -68,9 +69,7 @@ int	main(int argc, char *argv[])
 	set_info(&a_info);
 	set_info(&b_info);
 	arr_size = get_argv_size(argv) - 1;
-	arr = (int *)malloc(sizeof(int) * (arr_size + 1));
-	if (!arr)
-		print_err(-1);
+	arr = make_int_arr_and_set(arr_size);
 	arr = parse_argv(argv, arr);
 	if (arr_size < 2)
 		print_err(1);
@@ -83,4 +82,6 @@ int	main(int argc, char *argv[])
 		sort_below_five(&a_info, &b_info, arr_size);
 	else
 		quicksort(&a_info, &b_info, arr_size, 0);
+	free (arr);
+	return (0);
 }

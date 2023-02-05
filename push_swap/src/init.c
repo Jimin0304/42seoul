@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 21:02:49 by jimpark           #+#    #+#             */
-/*   Updated: 2023/02/03 14:25:45 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/02/05 21:38:27 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ int	*parse_argv(char **argv, int *arr)
 		else
 			arr[k++] = ft_atoi(argv[i]);
 	}
-	arr[k] = '\0';
 	return (arr);
 }
 

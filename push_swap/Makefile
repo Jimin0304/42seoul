@@ -33,7 +33,7 @@ all : $(NAME)
 $(NAME) : $(OBJECTS)
 			@make -C $(FT_PRINTF_DIR)
 			@make -C $(LIBFT_DIR)
-			$(CC) $(CFLAGS) -g -fsanitize=address $(OBJECTS) $(HEADER) $(LIBFT_FLAG) $(FT_PRINTF_FLAG) -o $(NAME)
+			$(CC) $(CFLAGS) $(OBJECTS) $(HEADER) $(LIBFT_FLAG) $(FT_PRINTF_FLAG) -o $(NAME)
 
 clean :
 	$(RM) $(OBJECTS)

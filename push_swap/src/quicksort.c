@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 14:21:31 by jimpark           #+#    #+#             */
-/*   Updated: 2023/02/05 17:21:42 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/02/05 19:19:28 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,11 @@ void	b_to_a(t_info *a_info, t_info *b_info, int r, int start)
 	rb_count = count_arr[0];
 	pa_count = count_arr[1];
 	ra_count = count_arr[2];
+	free (count_arr);
 	a_to_b(a_info, b_info, pa_count - ra_count, start + r / 3 * 2);
 	reverse_rotate(a_info, b_info, ra_count, rb_count);
 	a_to_b(a_info, b_info, ra_count, start + r / 3);
 	b_to_a(a_info, b_info, rb_count, start);
-	free (count_arr);
 }
 
 int	*a_to_b_action(t_info *a_info, t_info *b_info, int r, int start)
@@ -133,9 +133,9 @@ void	a_to_b(t_info *a_info, t_info *b_info, int r, int start)
 	ra_count = count_arr[0];
 	pb_count = count_arr[1];
 	rb_count = count_arr[2];
+	free (count_arr);
 	reverse_rotate(a_info, b_info, ra_count, rb_count);
 	a_to_b(a_info, b_info, ra_count, start + r / 3 * 2);
 	b_to_a(a_info, b_info, rb_count, start + r / 3);
 	b_to_a(a_info, b_info, pb_count - rb_count, start);
-	free (count_arr);
 }
