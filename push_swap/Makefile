@@ -20,6 +20,7 @@ SRCS = 	$(SRC_DIR)deque.c \
 		$(SRC_DIR)utils.c \
 		$(SRC_DIR)sort_three.c \
 		$(SRC_DIR)quicksort.c \
+		$(SRC_DIR)sort.c \
 		$(COMMAND_DIR)push.c \
 		$(COMMAND_DIR)reverse_rotate.c \
 		$(COMMAND_DIR)rotate.c \

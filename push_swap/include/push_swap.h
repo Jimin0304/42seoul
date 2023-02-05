@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 22:02:10 by jimpark           #+#    #+#             */
-/*   Updated: 2023/02/03 16:43:34 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/02/05 17:34:07 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,10 @@ void	a_to_b(t_info *a_info, t_info *b_info, int r, int start);
 void	b_to_a(t_info *a_info, t_info *b_info, int r, int start);
 void	sort_below_five(t_info *a_info, t_info *b_info, int size);
 void	sort_below_three(t_info *a_info, t_info *b_info, int size);
-void	sort_three(t_info *a, t_info *b, int first, int second, int third);
+void	sort_three(t_info *a_info, t_info *b_info);
 void	reverse_rotate(t_info *a_info, t_info *b_info, int a, int b);
+int		*make_int_arr_and_set(int size);
+int		*a_to_b_action(t_info *a_info, t_info *b_info, int r, int start);
+int		*b_to_a_action(t_info *a_info, t_info *b_info, int r, int start);
 
 #endif
