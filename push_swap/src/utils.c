@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 22:02:40 by jimpark           #+#    #+#             */
-/*   Updated: 2023/02/05 20:49:25 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/02/06 16:59:51 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,15 @@ void	free_all(char **arr, int i)
 	while (j <= i)
 		free(arr[j++]);
 	free(arr);
+}
+
+void	free_nodes(t_info *info)
+{
+	while (info->top)
+	{
+		free (info->top);
+		info->top = info->top->next;
+	}
 }
 
 int	*make_int_arr_and_set(int size)

@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 22:02:10 by jimpark           #+#    #+#             */
-/*   Updated: 2023/02/05 17:34:07 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/02/06 17:00:04 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,6 @@ void	reverse_rotate(t_info *a_info, t_info *b_info, int a, int b);
 int		*make_int_arr_and_set(int size);
 int		*a_to_b_action(t_info *a_info, t_info *b_info, int r, int start);
 int		*b_to_a_action(t_info *a_info, t_info *b_info, int r, int start);
+void	free_nodes(t_info *info);
 
 #endif

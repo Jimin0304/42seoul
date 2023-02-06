@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 22:01:33 by jimpark           #+#    #+#             */
-/*   Updated: 2023/02/05 21:57:21 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/02/06 17:01:11 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,5 @@ int	main(int argc, char *argv[])
 	else
 		quicksort(&a_info, &b_info, arr_size, 0);
 	free (arr);
-	return (0);
+	free_nodes(&a_info);
 }
