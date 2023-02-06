@@ -6,17 +6,17 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 18:53:58 by jimpark           #+#    #+#             */
-/*   Updated: 2023/01/30 16:43:25 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/02/06 19:00:37 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, char *src, size_t dstsize)
+int	ft_strlcat(char *dst, char *src, int dstsize)
 {
-	size_t	i;
-	size_t	dst_len;
-	size_t	src_len;
+	int	i;
+	int	dst_len;
+	int	src_len;
 
 	i = 0;
 	if (!dst)

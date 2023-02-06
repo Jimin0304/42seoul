@@ -6,7 +6,7 @@
 #    By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/25 20:03:03 by jimpark           #+#    #+#              #
-#    Updated: 2022/08/10 15:02:01 by jimpark          ###   ########.fr        #
+#    Updated: 2023/02/06 20:52:25 by jimpark          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,7 +75,6 @@ $(NAME) : $(OBJ_FILES)
 		$(AR) $(NAME) $(OBJ_FILES)
 
 all : $(NAME)
-	sleep 1
 
 .c.o:
 	$(CC) $(CFLAGS) -c -o $@ $<

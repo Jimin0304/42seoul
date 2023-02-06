@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   gnl_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/18 18:58:50 by jimpark           #+#    #+#             */
-/*   Updated: 2023/02/06 19:00:21 by jimpark          ###   ########.fr       */
+/*   Created: 2023/02/06 21:50:18 by jimpark           #+#    #+#             */
+/*   Updated: 2023/02/06 22:08:26 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef GNL_BONUS_H
+# define GNL_BONUS_H
 
-int	ft_strlcpy(char *dst, char *src, int dstsize)
-{
-	int	i;
-	int	res;
+# include <stdlib.h>
+# include <unistd.h>
 
-	i = 0;
-	res = ft_strlen(src);
-	if (dstsize == 0)
-		return (res);
-	while ((src[i] != '\0') && (i < dstsize - 1))
-	{
-		dst[i] = src[i];
-		i++;
-	}
-	dst[i] = '\0';
-	return (res);
-}
+# define BUFFER_SIZE 4
+
+char	*ft_strjoin(char *s1, char *s2);
+int		ft_strlen(char *s);
+int		ft_strlcpy(char *dst, char *src, int dstsize);
+int		ft_strlcat(char *dst, char *src, int dstsize);
+char	*ft_strchr(char *s, int c);
+char	*ft_strdup(char *s1);
+char	*get_next_line(int fd);
+
+#endif

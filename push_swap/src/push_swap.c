@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 22:01:33 by jimpark           #+#    #+#             */
-/*   Updated: 2023/02/06 17:01:11 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/02/06 17:54:46 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,6 @@ int	main(int argc, char *argv[])
 	arr_size = get_argv_size(argv) - 1;
 	arr = make_int_arr_and_set(arr_size);
 	arr = parse_argv(argv, arr);
-	if (arr_size < 2)
-		print_err(1);
 	arr_to_stack(&a_info, arr, arr_size);
 	if (sort_arr_check(&a_info, arr, arr_size) == 0)
 		print_err (1);

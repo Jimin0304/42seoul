@@ -10,6 +10,10 @@ FT_PRINTF_FLAG = -L$(FT_PRINTF_DIR) -lftprintf
 LIBFT_DIR = ./lib/libft
 LIBFT_FLAG = -L$(LIBFT_DIR) -lft
 
+CHECKER_DIR = ./checker
+CHECKER_FLAG = -L$(CHECKER_DIR) -lchecker
+
+
 HEADER = -I ./include
 SRC_DIR = ./src/
 COMMAND_DIR = ./command/
@@ -39,14 +43,19 @@ clean :
 	$(RM) $(OBJECTS)
 	$(MAKE) -C $(LIBFT_DIR) clean
 	$(MAKE) -C $(FT_PRINTF_DIR) clean
+	$(MAKE) -C $(CHECKER_DIR) clean
 
 fclean : clean
 	$(RM) $(NAME)
 	$(MAKE) -C $(LIBFT_DIR) fclean
 	$(MAKE) -C $(FT_PRINTF_DIR) fclean
+	$(MAKE) -C $(CHECKER_DIR) fclean
 
 re :
 	$(MAKE) fclean
 	$(MAKE) all
 
-.PHONY: all clean fclean re
+bonus :
+	$(MAKE) -C $(CHECKER_DIR)
+
+.PHONY: all clean fclean re bonus

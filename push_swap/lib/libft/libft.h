@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 17:15:39 by jimpark           #+#    #+#             */
-/*   Updated: 2023/01/30 16:24:59 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/02/06 19:22:58 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ int		ft_isprint(int c);
 void	*ft_memcpy(void *dst, void *src, size_t n);
 void	*ft_memmove(void *dst, void *src, size_t len);
 void	*ft_memset(void *b, int c, size_t len);
-int		ft_strncmp(char *s1, char *s2, size_t n);
-size_t	ft_strlcat(char *dst, char *src, size_t dstsize);
-size_t	ft_strlcpy(char *dst, char *src, size_t dstsize);
+int		ft_strncmp(char *s1, char *s2, int n);
+int		ft_strlcat(char *dst, char *src, int dstsize);
+int		ft_strlcpy(char *dst, char *src, int dstsize);
 int		ft_strlen(char *s);
 int		ft_tolower(int c);
 int		ft_toupper(int c);

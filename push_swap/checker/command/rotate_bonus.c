@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   rotate_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/18 18:58:50 by jimpark           #+#    #+#             */
-/*   Updated: 2023/02/06 19:00:21 by jimpark          ###   ########.fr       */
+/*   Created: 2023/01/30 20:46:28 by jimpark           #+#    #+#             */
+/*   Updated: 2023/02/06 22:11:45 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/push_swap_bonus.h"
 
-int	ft_strlcpy(char *dst, char *src, int dstsize)
+void	checker_ra(t_info *a_info)
 {
-	int	i;
-	int	res;
+	if (a_info->size < 2)
+		return ;
+	push_bottom(a_info, a_info->top->content);
+	pop_top(a_info);
+}
 
-	i = 0;
-	res = ft_strlen(src);
-	if (dstsize == 0)
-		return (res);
-	while ((src[i] != '\0') && (i < dstsize - 1))
-	{
-		dst[i] = src[i];
-		i++;
-	}
-	dst[i] = '\0';
-	return (res);
+void	checker_rb(t_info *b_info)
+{
+	if (b_info->size < 2)
+		return ;
+	push_bottom(b_info, b_info->top->content);
+	pop_top(b_info);
+}
+
+void	checker_rr(t_info *a_info, t_info *b_info)
+{
+	checker_ra(a_info);
+	checker_rb(b_info);
 }

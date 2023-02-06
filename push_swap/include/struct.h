@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/18 18:58:50 by jimpark           #+#    #+#             */
-/*   Updated: 2023/02/06 19:00:21 by jimpark          ###   ########.fr       */
+/*   Created: 2023/02/06 21:01:05 by jimpark           #+#    #+#             */
+/*   Updated: 2023/02/06 21:01:33 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef STRUCT_H
+# define STRUCT_H
 
-int	ft_strlcpy(char *dst, char *src, int dstsize)
+typedef struct s_node
 {
-	int	i;
-	int	res;
+	int				content;
+	struct s_node	*prev;
+	struct s_node	*next;
+}				t_node;
 
-	i = 0;
-	res = ft_strlen(src);
-	if (dstsize == 0)
-		return (res);
-	while ((src[i] != '\0') && (i < dstsize - 1))
-	{
-		dst[i] = src[i];
-		i++;
-	}
-	dst[i] = '\0';
-	return (res);
-}
+typedef struct s_info
+{
+	int				*arr;
+	int				size;
+	struct s_node	*top;
+	struct s_node	*bottom;
+}				t_info;
+
+#endif
