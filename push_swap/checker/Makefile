@@ -11,7 +11,8 @@ HEADER = -I ./include
 SRCS = 	$(SRC_DIR)push_swap_bonus.c \
 		$(SRC_DIR)libft_utils_bonus.c \
 		$(SRC_DIR)libft_utils2_bonus.c \
-		$(SRC_DIR)utils_bonus.c \
+		$(SRC_DIR)utils1_bonus.c \
+		$(SRC_DIR)utils2_bonus.c \
 		$(SRC_DIR)gnl_bonus.c \
 		$(SRC_DIR)deque_bonus.c \
 		$(SRC_DIR)ft_split_bonus.c \

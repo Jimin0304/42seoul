@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 21:02:49 by jimpark           #+#    #+#             */
-/*   Updated: 2023/02/06 17:28:44 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/02/07 20:05:09 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	get_argv_size(char **argv)
 	while (argv[i])
 	{
 		if (ft_strlen(argv[i]) == 0)
-			print_err(-1);
+			print_err();
 		if (ft_strchr(argv[i], 32) != 0)
 			size += word_count(argv[i], (char)32);
 		else
@@ -100,7 +100,7 @@ int	sort_arr_check(t_info *info, int *arr, int size)
 				check++;
 			}
 			else if (arr[j] == arr[j + 1])
-				print_err(-1);
+				print_err();
 		}
 	}
 	info->arr = arr;

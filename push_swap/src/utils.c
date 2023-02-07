@@ -6,16 +6,15 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 22:02:40 by jimpark           #+#    #+#             */
-/*   Updated: 2023/02/06 16:59:51 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/02/07 20:05:56 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-int	print_err(int i)
+int	print_err(void)
 {
-	if (i == -1)
-		ft_printf("Error\n");
+	ft_printf("Error\n");
 	exit(1);
 }
 
@@ -45,7 +44,7 @@ int	*make_int_arr_and_set(int size)
 
 	count_arr = (int *)malloc(sizeof(int) * size);
 	if (!count_arr)
-		print_err(-1);
+		exit(1);
 	i = 0;
 	while (i < size)
 		count_arr[i++] = 0;

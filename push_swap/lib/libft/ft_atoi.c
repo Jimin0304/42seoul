@@ -6,11 +6,11 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 17:31:21 by jimpark           #+#    #+#             */
-/*   Updated: 2023/01/30 16:36:33 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/02/07 19:16:22 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	print_err(int i);
+int	print_err(void);
 
 int	ft_atoi(char *str)
 {
@@ -24,15 +24,19 @@ int	ft_atoi(char *str)
 		pos = -1;
 		str++;
 	}
+	else if (*str == '+')
+		str++;
+	if (*str == '\0')
+		print_err();
 	while (('0' <= *str) && (*str <= '9'))
 	{
 		result = result * 10 + (*str - '0');
 		str++;
 	}
 	if (*str != '\0')
-		return (print_err(-1));
+		return (print_err());
 	result *= pos;
 	if ((result > 2147483647) || (result < -2147483648))
-		return (print_err(-1));
+		return (print_err());
 	return (result);
 }

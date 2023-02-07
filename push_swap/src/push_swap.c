@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 22:01:33 by jimpark           #+#    #+#             */
-/*   Updated: 2023/02/06 17:54:46 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/02/07 20:59:37 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	main(int argc, char *argv[])
 	int		*arr;
 
 	if (argc < 2)
-		print_err(1);
+		exit(1);
 	set_info(&a_info);
 	set_info(&b_info);
 	arr_size = get_argv_size(argv) - 1;
@@ -73,7 +73,7 @@ int	main(int argc, char *argv[])
 	arr = parse_argv(argv, arr);
 	arr_to_stack(&a_info, arr, arr_size);
 	if (sort_arr_check(&a_info, arr, arr_size) == 0)
-		print_err (1);
+		exit(1);
 	if (arr_size <= 3)
 		sort_below_three(&a_info, &b_info, arr_size);
 	else if (arr_size < 6)

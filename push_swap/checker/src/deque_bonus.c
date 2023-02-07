@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 21:51:49 by jimpark           #+#    #+#             */
-/*   Updated: 2023/02/06 22:16:15 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/02/07 18:36:28 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	push_top(t_info *info, int content)
 
 	newnode = (t_node *)malloc(sizeof(t_node));
 	if (!newnode)
-		print_err(-1);
+		return ;
 	if (info->top == NULL)
 	{
 		info->top = init_deque(newnode, content);
@@ -52,7 +52,7 @@ void	push_bottom(t_info *info, int content)
 
 	newnode = (t_node *)malloc(sizeof(t_node));
 	if (!newnode)
-		print_err(-1);
+		return ;
 	if (info->bottom == NULL)
 	{
 		info->bottom = init_deque(newnode, content);

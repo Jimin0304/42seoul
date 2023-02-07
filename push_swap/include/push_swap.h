@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 22:02:10 by jimpark           #+#    #+#             */
-/*   Updated: 2023/02/06 22:12:15 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/02/07 18:37:23 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include "command.h"
 # include "../checker/include/push_swap_bonus.h"
 
-int		print_err(int i);
+int		print_err(void);
 int		word_count(char *s, char c);
 void	free_all(char **arr, int i);
 int		get_argv_size(char **argv);
