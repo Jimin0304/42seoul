@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 18:50:27 by jimpark           #+#    #+#             */
-/*   Updated: 2023/02/07 18:36:27 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/02/08 16:59:00 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,80 +39,47 @@ char	*read_file(char *save, int fd)
 
 	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
-		return (0);
+		exit(1);
 	buf_len = read(fd, buffer, BUFFER_SIZE);
 	while (buf_len > 0)
 	{
 		buffer[buf_len] = '\0';
 		save = ft_strjoin(save, buffer);
-		if (!save)
-			return (0);
-		if (ft_strchr(save, '\n') != 0 || buf_len < BUFFER_SIZE)
+		if (ft_strchr(save, '\n') != 0 || !save)
 			break ;
 		buf_len = read(fd, buffer, BUFFER_SIZE);
 	}
 	free(buffer);
-	if (buf_len < 0)
-	{
-		free (save);
-		return (0);
-	}
 	return (save);
 }
 
-char	*read_line(char *save, int len)
+char	*check(char *line)
 {
-	char	*result;
+	int		i;
+	char	*res;
 
-	result = (char *)malloc(sizeof(char) * (len + 1));
-	if (!result)
-		return (0);
-	if (*save == '\0')
-	{
-		free (result);
-		return (0);
-	}
-	ft_strlcpy(result, save, len + 1);
-	return (result);
-}
-
-char	*get_save(char *save, int i)
-{
-	char	*temp;
-
-	temp = save;
-	save = ft_strdup(&(save[i + 1]));
-	if (!save)
-		return (0);
-	free (temp);
-	return (save);
+	i = 0;
+	while (line[i] != '\n' && line[i])
+		i++;
+	if (line[i] == '\0' || line[i + 1] == '\0')
+		return (NULL);
+	res = ft_strdup(&line[i + 1]);
+	if (!res)
+		return (NULL);
+	line[i + 1] = '\0';
+	return (res);
 }
 
 char	*get_next_line(int fd)
 {
 	static char	*save;
-	int			i;
 	char		*result;
 
 	if (fd < 0 || BUFFER_SIZE < 1)
+		exit(1);
+	result = read_file(save, fd);
+	if (!result)
 		return (0);
-	save = read_file(save, fd);
-	if (!save)
-		return (0);
-	i = -1;
-	while (save[++i] != '\0')
-	{
-		if (save[i] == '\n')
-		{
-			result = read_line(save, i + 1);
-			save = get_save(save, i);
-			if (!save)
-				return (0);
-			return (result);
-		}
-	}
-	result = read_line(save, i);
-	free(save);
-	save = NULL;
+	save = check(result);
 	return (result);
 }

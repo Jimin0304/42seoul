@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 22:10:43 by jimpark           #+#    #+#             */
-/*   Updated: 2023/02/07 20:43:40 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/02/08 16:59:51 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	sort_nodes(t_info *a_info, t_info *b_info, char *str)
 	else if (!(ft_strcmp(str, "pb\n")))
 		checker_pb(a_info, b_info);
 	else
-		print_err_b(str);
+		print_err();
 }
 
 void	run_commands(t_info *a_info, t_info *b_info)
@@ -79,7 +79,7 @@ int	check_sort(t_info *a_info, t_info *b_info)
 	}
 	return (0);
 }
-// #include <stdio.h>
+
 int	main(int argc, char *argv[])
 {
 	t_info	a_info;
@@ -98,17 +98,10 @@ int	main(int argc, char *argv[])
 	arr = parse_argv(argv, arr);
 	arr_to_stack(&a_info, arr, arr_size);
 	check_duplicate(arr, arr_size);
+	free (arr);
 	run_commands(&a_info, &b_info);
 	if (check_sort(&a_info, &b_info) == -1)
-	{
-		// while(a_info.top)
-		// {
-		// 	printf("%d\n", a_info.top->content);
-		// 	a_info.top = a_info.top->next;
-		// }
 		write(1, "KO\n", 3);
-	}
 	else
 		write(1, "OK\n", 3);
-
 }

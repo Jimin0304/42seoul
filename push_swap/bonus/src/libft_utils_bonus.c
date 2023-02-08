@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 21:42:56 by jimpark           #+#    #+#             */
-/*   Updated: 2023/02/07 20:42:18 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/02/08 16:54:32 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,17 @@ int	ft_atoi(char *str)
 	else if (*str == '+')
 		str++;
 	if (*str == '\0')
-		print_err_b("a");
+		print_err();
 	while (('0' <= *str) && (*str <= '9'))
 	{
 		result = result * 10 + (*str - '0');
 		str++;
 	}
 	if (*str != '\0')
-		return (print_err_b("b"));
+		return (print_err());
 	result *= pos;
 	if ((result > 2147483647) || (result < -2147483648))
-		return (print_err_b("c"));
+		return (print_err());
 	return (result);
 }
 
@@ -47,15 +47,8 @@ char	*ft_strjoin(char *s1, char *s2)
 	int		s1_size;
 	int		s2_size;
 
-	if (!s1 && !s2)
-		return (0);
 	if (!s1)
-	{
-		joined = ft_strdup(s2);
-		if (!joined)
-			return (0);
-		return (joined);
-	}
+		return (ft_strdup(s2));
 	s1_size = ft_strlen(s1);
 	s2_size = ft_strlen(s2);
 	joined = (char *)malloc(sizeof(char) * (s1_size + s2_size + 1));
@@ -63,7 +56,6 @@ char	*ft_strjoin(char *s1, char *s2)
 		return (0);
 	ft_strlcpy(joined, s1, s1_size + s2_size + 1);
 	ft_strlcat(joined, s2, s1_size + s2_size + 1);
-	free (s1);
 	return (joined);
 }
 

@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 18:29:13 by jimpark           #+#    #+#             */
-/*   Updated: 2023/02/07 20:41:31 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/02/08 16:58:43 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include "../../lib/libft/libft.h"
 # include "gnl_bonus.h"
 
-int	print_err_b(char *str);
+int		print_err(void);
 void	checker_pa(t_info *a_info, t_info *b_info);
 void	checker_pb(t_info *a_info, t_info *b_info);
 void	checker_rra(t_info *a_info);
@@ -39,7 +39,7 @@ void	push_top(t_info *info, int content);
 void	push_bottom(t_info *info, int content);
 void	pop_top(t_info *info);
 void	pop_bottom(t_info *info);
-int 	word_count(char *s, char c);
+int		word_count(char *s, char c);
 void	check_duplicate(int *arr, int size);
 int		ft_strcmp(char *s1, char *s2);
 

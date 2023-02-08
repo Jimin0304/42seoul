@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 18:51:56 by jimpark           #+#    #+#             */
-/*   Updated: 2023/02/06 19:22:44 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/02/08 17:00:45 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_strncmp(char *s1, char *s2, int n)
 {
-	int			i;
+	int				i;
 	unsigned char	*str1;
 	unsigned char	*str2;
 

@@ -6,16 +6,14 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 17:57:13 by jimpark           #+#    #+#             */
-/*   Updated: 2023/02/07 20:54:12 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/02/08 17:00:25 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap_bonus.h"
 
-int	print_err_b(char *str)
+int	print_err(void)
 {
-	int size = ft_strlen(str);
-	write(1, str, size);
 	write(2, "Error\n", 6);
 	exit(1);
 }
@@ -30,7 +28,7 @@ int	get_argv_size(char **argv)
 	while (argv[i])
 	{
 		if (ft_strlen(argv[i]) == 0)
-			print_err_b("e");
+			print_err();
 		if (ft_strchr(argv[i], 32) != 0)
 			size += word_count(argv[i], (char)32);
 		else
@@ -62,10 +60,9 @@ int	*parse_argv(char **argv, int *arr)
 		j = 0;
 		if (ft_strchr(argv[i], 32) != 0)
 		{
-
 			tmp = ft_split(argv[i], 32);
 			if (!*tmp)
-				print_err_b("f");
+				print_err();
 			while (tmp[j])
 				arr[k++] = ft_atoi(tmp[j++]);
 			free_all(tmp, j - 1);
@@ -75,7 +72,6 @@ int	*parse_argv(char **argv, int *arr)
 	}
 	return (arr);
 }
-
 
 void	free_all(char **arr, int i)
 {

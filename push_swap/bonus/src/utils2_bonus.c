@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 16:30:52 by jimpark           #+#    #+#             */
-/*   Updated: 2023/02/07 20:41:52 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/02/08 16:55:41 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	check_duplicate(int *arr, int size)
 				arr[j + 1] = tmp;
 			}
 			else if (arr[j] == arr[j + 1])
-				print_err_b("g");
+				print_err();
 		}
 	}
 }

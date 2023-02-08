@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 22:02:10 by jimpark           #+#    #+#             */
-/*   Updated: 2023/02/07 18:37:23 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/02/08 17:19:50 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "../lib/libft/libft.h"
 # include "struct.h"
 # include "command.h"
-# include "../checker/include/push_swap_bonus.h"
+# include "../bonus/include/push_swap_bonus.h"
 
 int		print_err(void);
 int		word_count(char *s, char c);
