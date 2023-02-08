@@ -6,16 +6,16 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 18:29:13 by jimpark           #+#    #+#             */
-/*   Updated: 2023/02/08 16:58:43 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/02/08 18:50:14 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_BONUS_H
 # define PUSH_SWAP_BONUS_H
 
-# include "../../include/struct.h"
-# include "../../lib/ft_printf/ft_printf.h"
-# include "../../lib/libft/libft.h"
+# include "../../mandatory/include/struct.h"
+# include "../../mandatory/lib/ft_printf/ft_printf.h"
+# include "../../mandatory/lib/libft/libft.h"
 # include "gnl_bonus.h"
 
 int		print_err(void);

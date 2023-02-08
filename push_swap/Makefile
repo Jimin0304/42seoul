@@ -5,19 +5,15 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 
-FT_PRINTF_DIR = ./lib/ft_printf
+FT_PRINTF_DIR = ./mandatory/lib/ft_printf
 FT_PRINTF_FLAG = -L$(FT_PRINTF_DIR) -lftprintf
 
-LIBFT_DIR = ./lib/libft
+LIBFT_DIR = ./mandatory/lib/libft
 LIBFT_FLAG = -L$(LIBFT_DIR) -lft
 
-CHECKER_DIR = ./checker
-CHECKER_FLAG = -L$(CHECKER_DIR) -lchecker
-
-
 HEADER = -I ./include
-SRC_DIR = ./src/
-COMMAND_DIR = ./command/
+SRC_DIR = ./mandatory/src/
+COMMAND_DIR = ./mandatory/command/
 
 SRCS = 	$(SRC_DIR)deque.c \
 		$(SRC_DIR)init.c \
