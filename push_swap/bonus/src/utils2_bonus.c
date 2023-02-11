@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 16:30:52 by jimpark           #+#    #+#             */
-/*   Updated: 2023/02/08 16:55:41 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/02/11 16:14:13 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,13 @@ int	ft_strcmp(char *s1, char *s2)
 			return (*(unsigned char *)s1 - *(unsigned char *)s2);
 	}
 	return (0);
+}
+
+void	free_nodes(t_info *info)
+{
+	while (info->top)
+	{
+		free (info->top);
+		info->top = info->top->next;
+	}
 }

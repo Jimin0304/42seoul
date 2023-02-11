@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 18:29:13 by jimpark           #+#    #+#             */
-/*   Updated: 2023/02/08 18:50:14 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/02/11 16:14:23 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,6 @@ void	pop_bottom(t_info *info);
 int		word_count(char *s, char c);
 void	check_duplicate(int *arr, int size);
 int		ft_strcmp(char *s1, char *s2);
+void	free_nodes(t_info *info);
 
 #endif

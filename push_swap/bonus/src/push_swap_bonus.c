@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 22:10:43 by jimpark           #+#    #+#             */
-/*   Updated: 2023/02/08 16:59:51 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/02/11 16:18:10 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,4 +104,5 @@ int	main(int argc, char *argv[])
 		write(1, "KO\n", 3);
 	else
 		write(1, "OK\n", 3);
+	free_nodes(&a_info);
 }
