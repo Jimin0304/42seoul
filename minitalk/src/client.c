@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 16:21:47 by jimpark           #+#    #+#             */
-/*   Updated: 2023/02/11 22:56:32 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/02/12 19:26:43 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	*dec_to_bin(char c)
 	int	*result;
 	int	i;
 
-	result = (int *)malloc(sizeof(int) * 8);
+	result = (int *)malloc(sizeof(int) * 7);
 	i = 7;
 	while (i >= 0)
 	{
@@ -28,32 +28,42 @@ int	*dec_to_bin(char c)
 	return (result);
 }
 
-void	send_message(pid_t pid, char *msg)
+void	send_message(pid_t pid, char *msg, int size)
 {
 	int	*bin;
+	int	i;
 
-	while (*msg)
+	while (size--)
 	{
-		*bin = dec_to_bin(*msg++);
-		while (*bin)
+		bin = dec_to_bin(*msg++);
+		i = -1;
+		while (++i < 8)
 		{
-			if (*bin == 1)
+			if (bin[i] == 1)
 				kill(pid, SIGUSR1);
-			else if (*bin == 0)
+			else if (bin[i] == 0)
 				kill(pid, SIGUSR2);
-			bin++;
+			usleep(20);
 		}
-		msg++;
 		free (bin);
 	}
 }
 
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
 	pid_t	pid;
+	int		i;
 
 	if (argc < 3)
 		print_err("wrong format");
 	pid = ft_atoi(argv[1]);
-	send_message(pid, argv[2]);
+	if (pid <= 100 || pid >= 99999)
+		print_err("wrong PID");
+	i = 2;
+	while (argv[i])
+	{
+		send_message(pid, argv[i], ft_strlen(argv[i]));
+		send_message(pid, "\n", ft_strlen("\n"));
+		i++;
+	}
 }

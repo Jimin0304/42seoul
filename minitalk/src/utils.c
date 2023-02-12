@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 21:38:19 by jimpark           #+#    #+#             */
-/*   Updated: 2023/02/11 22:55:57 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/02/12 17:57:44 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,14 @@ int	ft_atoi(char *str)
 	else if ((result > 9223372036854775808ULL) && (pos == -1))
 		return (0);
 	return (result * pos);
+}
+
+int	ft_strlen(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
 }
