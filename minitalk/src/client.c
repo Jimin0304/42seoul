@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 16:21:47 by jimpark           #+#    #+#             */
-/*   Updated: 2023/02/12 19:26:43 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/02/14 22:01:55 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	*dec_to_bin(char c)
 	int	*result;
 	int	i;
 
-	result = (int *)malloc(sizeof(int) * 7);
+	result = (int *)malloc(sizeof(int) * 8);
 	i = 7;
 	while (i >= 0)
 	{
@@ -43,7 +43,7 @@ void	send_message(pid_t pid, char *msg, int size)
 				kill(pid, SIGUSR1);
 			else if (bin[i] == 0)
 				kill(pid, SIGUSR2);
-			usleep(20);
+			usleep(1);
 		}
 		free (bin);
 	}
