@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 16:21:47 by jimpark           #+#    #+#             */
-/*   Updated: 2023/02/14 22:01:55 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/02/16 14:07:42 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	send_message(pid_t pid, char *msg, int size)
 				kill(pid, SIGUSR1);
 			else if (bin[i] == 0)
 				kill(pid, SIGUSR2);
-			usleep(1);
+			usleep(20);
 		}
 		free (bin);
 	}
