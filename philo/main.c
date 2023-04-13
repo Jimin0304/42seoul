@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 18:16:06 by jimpark           #+#    #+#             */
-/*   Updated: 2023/04/12 22:15:20 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/04/13 21:53:25 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,25 @@ int	init_philo(t_philo **philo, t_info *info)
 	return (0);
 }
 
+void	*action(void *philo)
+{
+
+}
+
+int	start_philo(t_philo *philo, t_info *info)
+{
+	int	i;
+	time_t time;
+
+	i = 0;
+	while (i < info->n_philo)
+	{
+		philo[i].last_eat_time = gettimeofday(&time, NULL);
+		pthread_create(&philo[i].thread, NULL, action, &philo[i]);
+		i++;
+	}
+}
+
 int	main(int argc, char *argv[])
 {
 	t_info	info;
@@ -60,7 +79,9 @@ int	main(int argc, char *argv[])
 	if (argc != 5 && argc != 6)
 		return (print_err("argc"));
 	if (init_info(argc, argv, &info))
-		return (print_err("argv"));
+		return (print_err("argv init"));
 	if (init_philo(&philo, &info))
+		return (print_err("philo init"));
+	if (start_philo(philo, &info));
 		return (print_err("philo"));
 }
