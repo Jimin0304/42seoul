@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 18:04:08 by jimpark           #+#    #+#             */
-/*   Updated: 2023/04/13 21:06:50 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/04/14 21:06:25 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ typedef struct s_philo {
 	time_t		last_eat_time;
 	int			left;
 	int			right;
+	pthread_mutex_t	fork;
+	t_info		info;
 }				t_philo;
 
 int	ft_atoi(char *str);
