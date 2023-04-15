@@ -20,11 +20,14 @@
 # include <pthread.h>
 
 typedef struct s_info {
+	int	argc;
 	int	n_philo;
 	int	die;
 	int	eat;
 	int	sleep;
 	int	count;
+	int	*fork;
+	int	full_philo;
 }				t_info;
 
 typedef struct s_philo {
@@ -34,7 +37,8 @@ typedef struct s_philo {
 	time_t		last_eat_time;
 	int			left;
 	int			right;
-	pthread_mutex_t	fork;
+	pthread_mutex_t	l_fork;
+	pthread_mutex_t r_fork;
 	t_info		info;
 }				t_philo;
 
