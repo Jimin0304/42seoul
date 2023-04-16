@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 18:04:08 by jimpark           #+#    #+#             */
-/*   Updated: 2023/04/14 21:06:25 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/04/16 20:10:24 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ typedef struct s_info {
 	int	eat;
 	int	sleep;
 	int	count;
-	int	*fork;
 	int	full_philo;
 }				t_info;
 
@@ -34,7 +33,8 @@ typedef struct s_philo {
 	int			id;
 	pthread_t	thread;
 	int			n_eat;
-	time_t		last_eat_time;
+	long long	start_time;
+	long long	last_eat_time;
 	int			left;
 	int			right;
 	pthread_mutex_t	l_fork;
@@ -42,7 +42,20 @@ typedef struct s_philo {
 	t_info		info;
 }				t_philo;
 
-int	ft_atoi(char *str);
-int	print_err(char *error_msg);
+int			ft_atoi(char *str);
+int			print_err(char *error_msg);
+void		print_philo_status(t_philo *philo, char *str);
+void		wait_action_time(int time_to_action);
+long long	get_current_time(void);
+
+int			init_info(int argc, char *argv[], t_info *info);
+int			init_philo(t_philo **philo, t_info *info);
+int			init_mutex(t_philo *philo, t_info *info);
+
+void		philo_eat(t_philo *philo);
+void		pick_up_fork(t_philo *philo);
+void		put_down_fork(t_philo *philo);
+void		philo_sleep(t_philo *philo);
+void		philo_think(t_philo *philo);
 
 #endif
