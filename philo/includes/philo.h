@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 18:04:08 by jimpark           #+#    #+#             */
-/*   Updated: 2023/04/16 20:10:24 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/04/17 19:52:59 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ typedef struct s_info {
 	int	sleep;
 	int	count;
 	int	full_philo;
+	int	finish;
+	pthread_mutex_t	m_action;
+	pthread_mutex_t	m_print;
 }				t_info;
 
 typedef struct s_philo {
@@ -35,6 +38,7 @@ typedef struct s_philo {
 	int			n_eat;
 	long long	start_time;
 	long long	last_eat_time;
+	pthread_mutex_t m_time;
 	int			left;
 	int			right;
 	pthread_mutex_t	l_fork;
@@ -44,7 +48,7 @@ typedef struct s_philo {
 
 int			ft_atoi(char *str);
 int			print_err(char *error_msg);
-void		print_philo_status(t_philo *philo, char *str);
+void		print_philo_status(t_philo *philo, char *str, int color);
 void		wait_action_time(int time_to_action);
 long long	get_current_time(void);
 

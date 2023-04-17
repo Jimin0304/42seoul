@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 19:29:23 by jimpark           #+#    #+#             */
-/*   Updated: 2023/04/16 19:58:21 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/04/17 19:56:13 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	init_info(int argc, char *argv[], t_info *info)
 	info->die = ft_atoi(argv[2]);
 	info->eat = ft_atoi(argv[3]);
 	info->sleep = ft_atoi(argv[4]);
-	if (info->n_philo < 2 || info->die == -1 || info->eat == -1 \
+	if (info->n_philo < 1 || info->die == -1 || info->eat == -1 \
 			|| info->sleep == -1)
 		return (1);
 	if (argc == 6)
@@ -29,6 +29,7 @@ int	init_info(int argc, char *argv[], t_info *info)
 			return(1);
 	}
 	info->full_philo = 0;
+	info->finish = 0;
 	return (0);
 }
 
@@ -58,10 +59,16 @@ int	init_mutex(t_philo *philo, t_info *info)
 	int	i;
 
 	i = 0;
+	if (pthread_mutex_init(&info->m_action, NULL))
+		return (1);
+	if (pthread_mutex_init(&info->m_print, NULL))
+		return (1);
 	while (i < info->n_philo)
 	{
 		if (pthread_mutex_init(&philo[i].l_fork, NULL))
 			return (1);
+		if (pthread_mutex_init(&philo[i].m_time, NULL))
+		return (1);
 		i++;
 	}
 	return (0);

@@ -6,14 +6,14 @@
 #    By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/16 19:34:57 by jimpark           #+#    #+#              #
-#    Updated: 2023/04/16 19:38:20 by jimpark          ###   ########.fr        #
+#    Updated: 2023/04/17 20:32:04 by jimpark          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=thread
 RM = rm -f
 
 HEADER = -I ./includes

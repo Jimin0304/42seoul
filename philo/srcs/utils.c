@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 20:24:13 by jimpark           #+#    #+#             */
-/*   Updated: 2023/04/16 20:11:07 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/04/17 20:06:13 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,17 @@ int	print_err(char *error_msg)
 	return(-1);
 }
 
-void	print_philo_status(t_philo *philo, char *str)
+void	print_philo_status(t_philo *philo, char *str, int color)
 {
 	long long	time;
 
+	pthread_mutex_lock(&philo->info->m_print);
 	time = get_current_time();
-	printf("%lld %d %s\n", time - philo->start_time, philo->id, str);
+	pthread_mutex_lock(&philo->info->m_action);
+	if (color == 1 || !philo->info->finish)
+		printf("\033[0;3%dm%lld %d %s\033[0m\n", color, time - philo->start_time, philo->id, str);
+	pthread_mutex_unlock(&philo->info->m_action);
+	pthread_mutex_unlock(&philo->info->m_print);
 }
 
 long long	get_current_time(void)
