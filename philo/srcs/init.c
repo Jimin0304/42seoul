@@ -47,7 +47,7 @@ int	init_philo(t_philo **philo, t_info *info)
 		(*philo)[i].left = i;
 		(*philo)[i].right = (i + 1) % info->n_philo;
 		(*philo)[i].r_fork = (*philo)[(i + 1) % info->n_philo].l_fork;
-		(*philo)[i].info = *info;
+		(*philo)[i].info = info;
 		i++;
 	}
 	return (0);

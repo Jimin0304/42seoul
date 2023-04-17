@@ -65,7 +65,7 @@ void	wait_action_time(int time_to_action)
 	start = get_current_time();
 	while (1)
 	{
-		usleep(1000);
+		usleep(10);
 		now = get_current_time();
 		if ((now - start) >= (long long)time_to_action)
 			break ;

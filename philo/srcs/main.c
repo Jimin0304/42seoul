@@ -18,15 +18,15 @@ void	*action(void *argv)
 
 	philo = (t_philo *)argv;
 	if (philo->id % 2)
-		wait_action_time(philo->info.eat);
+		wait_action_time(philo->info->eat);
 	while (1)
 	{
 		pick_up_fork(philo);
 		philo_eat(philo);
 		put_down_fork(philo);
-		if (philo->info.argc == 6 && philo->n_eat == philo->info.count)
+		if ((philo->info->argc == 6) && (philo->n_eat == philo->info->count))
 		{
-			philo->info.full_philo++;
+			philo->info->full_philo++;
 			break ;
 		}
 		philo_sleep(philo);
@@ -58,11 +58,11 @@ void	mornitoring_philo(t_philo *philo, t_info *info)
 {
 	while (1)
 	{
-		if (info->argc == 6 && info->full_philo == info->count)
+		if ((info->argc == 6) && (info->full_philo == info->n_philo))
 			break ;
 		if (check_dead_philo(philo, info))
 			break ;
-		usleep(1000);
+		usleep(10);
 	}
 }
 
@@ -84,7 +84,6 @@ int	start_philo(t_philo *philo, t_info *info)
 	i = 1;
 	while (i <= info->n_philo)
 		pthread_join(philo[i++].thread, NULL);
-	mornitoring_philo(philo, info);
 	return (0);
 }
 
@@ -103,4 +102,5 @@ int	main(int argc, char *argv[])
 		return (print_err("mutex_init"));
 	if (start_philo(philo, &info))
 		return (print_err("philo"));
+	mornitoring_philo(philo, &info);
 }

@@ -17,7 +17,7 @@ void	philo_eat(t_philo *philo)
 	philo->n_eat++;
 	philo->last_eat_time = get_current_time();
 	print_philo_status(philo, "is eating");
-	wait_action_time(philo->info.eat);
+	wait_action_time(philo->info->eat);
 }
 
 void	pick_up_fork(t_philo *philo)
@@ -37,7 +37,7 @@ void	put_down_fork(t_philo *philo)
 void	philo_sleep(t_philo *philo)
 {
 	print_philo_status(philo, "is sleeping");
-	wait_action_time(philo->info.sleep);
+	wait_action_time(philo->info->sleep);
 }
 
 void	philo_think(t_philo *philo)

@@ -39,7 +39,7 @@ typedef struct s_philo {
 	int			right;
 	pthread_mutex_t	l_fork;
 	pthread_mutex_t r_fork;
-	t_info		info;
+	t_info		*info;
 }				t_philo;
 
 int			ft_atoi(char *str);
