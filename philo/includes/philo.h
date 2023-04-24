@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jimpark <jimpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 18:04:08 by jimpark           #+#    #+#             */
-/*   Updated: 2023/04/17 19:52:59 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/04/24 18:03:02 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,30 +20,29 @@
 # include <pthread.h>
 
 typedef struct s_info {
-	int	argc;
-	int	n_philo;
-	int	die;
-	int	eat;
-	int	sleep;
-	int	count;
-	int	full_philo;
-	int	finish;
+	int				argc;
+	int				n_philo;
+	int				die;
+	int				eat;
+	int				sleep;
+	int				count;
+	int				full_philo;
+	int				finish;
 	pthread_mutex_t	m_action;
 	pthread_mutex_t	m_print;
 }				t_info;
 
 typedef struct s_philo {
-	int			id;
-	pthread_t	thread;
-	int			n_eat;
-	long long	start_time;
-	long long	last_eat_time;
-	pthread_mutex_t m_time;
-	int			left;
-	int			right;
+	int				id;
+	pthread_t		thread;
+	int				n_eat;
+	long long		start_time;
+	long long		last_eat_time;
+	int				left;
+	int				right;
 	pthread_mutex_t	l_fork;
-	pthread_mutex_t r_fork;
-	t_info		*info;
+	pthread_mutex_t	r_fork;
+	t_info			*info;
 }				t_philo;
 
 int			ft_atoi(char *str);
@@ -61,5 +60,13 @@ void		pick_up_fork(t_philo *philo);
 void		put_down_fork(t_philo *philo);
 void		philo_sleep(t_philo *philo);
 void		philo_think(t_philo *philo);
+
+int			start_philo(t_philo *philo, t_info *info);
+void		*action(void *argv);
+int			check_philosophers(t_philo *philo);
+void		join_thread(t_philo *philo, t_info *info);
+
+void		mornitoring_philo(t_philo *philo, t_info *info);
+int			check_dead_philo(t_philo *philo, t_info *info);
 
 #endif

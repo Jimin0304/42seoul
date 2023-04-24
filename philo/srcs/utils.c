@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jimpark <jimpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 20:24:13 by jimpark           #+#    #+#             */
-/*   Updated: 2023/04/17 20:06:13 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/04/24 18:04:44 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +38,7 @@ int	ft_atoi(char *str)
 int	print_err(char *error_msg)
 {
 	printf("Error: %s\n", error_msg);
-	return(-1);
-}
-
-void	print_philo_status(t_philo *philo, char *str, int color)
-{
-	long long	time;
-
-	pthread_mutex_lock(&philo->info->m_print);
-	time = get_current_time();
-	pthread_mutex_lock(&philo->info->m_action);
-	if (color == 1 || !philo->info->finish)
-		printf("\033[0;3%dm%lld %d %s\033[0m\n", color, time - philo->start_time, philo->id, str);
-	pthread_mutex_unlock(&philo->info->m_action);
-	pthread_mutex_unlock(&philo->info->m_print);
+	return (-1);
 }
 
 long long	get_current_time(void)
@@ -77,4 +64,16 @@ void	wait_action_time(int time_to_action)
 	}
 }
 
+void	print_philo_status(t_philo *philo, char *str, int color)
+{
+	long long	time;
 
+	pthread_mutex_lock(&philo->info->m_print);
+	time = get_current_time();
+	pthread_mutex_lock(&philo->info->m_action);
+	if (!philo->info->finish)
+		printf("\033[0;3%dm%lld %d %s\033[0m\n", color, \
+			time - philo->start_time, philo->id, str);
+	pthread_mutex_unlock(&philo->info->m_action);
+	pthread_mutex_unlock(&philo->info->m_print);
+}

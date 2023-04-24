@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jimpark <jimpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 19:29:23 by jimpark           #+#    #+#             */
-/*   Updated: 2023/04/17 19:56:13 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/04/24 18:04:31 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	init_info(int argc, char *argv[], t_info *info)
 	{
 		info->count = ft_atoi(argv[5]);
 		if (info->count <= 0)
-			return(1);
+			return (1);
 	}
 	info->full_philo = 0;
 	info->finish = 0;
@@ -40,10 +40,10 @@ int	init_philo(t_philo **philo, t_info *info)
 	*philo = (t_philo *)malloc(sizeof(t_philo) * info->n_philo);
 	if (!(*philo))
 		return (1);
-	i = 1;
-	while (i <= info->n_philo)
+	i = 0;
+	while (i < info->n_philo)
 	{
-		(*philo)[i].id = i;
+		(*philo)[i].id = i + 1;
 		(*philo)[i].n_eat = 0;
 		(*philo)[i].left = i;
 		(*philo)[i].right = (i + 1) % info->n_philo;
@@ -67,8 +67,6 @@ int	init_mutex(t_philo *philo, t_info *info)
 	{
 		if (pthread_mutex_init(&philo[i].l_fork, NULL))
 			return (1);
-		if (pthread_mutex_init(&philo[i].m_time, NULL))
-		return (1);
 		i++;
 	}
 	return (0);

@@ -15,9 +15,9 @@
 void	philo_eat(t_philo *philo)
 {
 	philo->n_eat++;
-	pthread_mutex_lock(&philo->m_time);
+	pthread_mutex_lock(&philo->info->m_action);
 	philo->last_eat_time = get_current_time();
-	pthread_mutex_unlock(&philo->m_time);
+	pthread_mutex_unlock(&philo->info->m_action);
 	print_philo_status(philo, "is eating", 5);
 	wait_action_time(philo->info->eat);
 }
