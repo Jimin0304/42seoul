@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jimpark <jimpark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 17:36:32 by jimpark           #+#    #+#             */
-/*   Updated: 2023/04/24 18:05:37 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/05/01 20:45:24 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,13 @@ void	*action(void *argv)
 	philo = (t_philo *)argv;
 	if (philo->info->n_philo == 1)
 		return (NULL);
-	if (philo->id % 2)
-		wait_action_time(philo->info->eat);
+	if (philo->id % 2 == 0)
+		wait_action_time(philo->info->eat / 10);
 	while (1)
 	{
 		if (check_philosophers(philo))
 			break ;
-		pick_up_fork(philo);
 		philo_eat(philo);
-		put_down_fork(philo);
 		if (check_philosophers(philo))
 			break ;
 		philo_sleep(philo);

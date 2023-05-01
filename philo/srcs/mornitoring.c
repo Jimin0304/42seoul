@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mornitoring.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jimpark <jimpark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 17:33:20 by jimpark           #+#    #+#             */
-/*   Updated: 2023/04/24 18:04:08 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/05/01 16:29:04 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	check_dead_philo(t_philo *philo, t_info *info)
 		now = get_current_time();
 		if (now - philo[i].last_eat_time >= (long long)info->die)
 		{
-			printf("\033[0;3%dm%lld %d dead\033[0m\n", 1, \
+			printf("\033[0;3%dm%lld %d died\033[0m\n", 1, \
 				now - philo[i].start_time, philo[i].id);
 			info->finish = 1;
 			pthread_mutex_unlock(&info->m_action);

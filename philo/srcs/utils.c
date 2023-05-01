@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jimpark <jimpark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 20:24:13 by jimpark           #+#    #+#             */
-/*   Updated: 2023/04/24 18:04:44 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/05/01 20:39:33 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	wait_action_time(int time_to_action)
 	start = get_current_time();
 	while (1)
 	{
-		usleep(10);
+		usleep(1000);
 		now = get_current_time();
 		if ((now - start) >= (long long)time_to_action)
 			break ;

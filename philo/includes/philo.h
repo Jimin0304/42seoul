@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jimpark <jimpark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 18:04:08 by jimpark           #+#    #+#             */
-/*   Updated: 2023/04/24 18:03:02 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/05/01 19:21:25 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct s_philo {
 	int				left;
 	int				right;
 	pthread_mutex_t	l_fork;
-	pthread_mutex_t	r_fork;
+	pthread_mutex_t	*r_fork;
 	t_info			*info;
 }				t_philo;
 
