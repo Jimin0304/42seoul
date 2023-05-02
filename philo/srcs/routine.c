@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 17:36:32 by jimpark           #+#    #+#             */
-/*   Updated: 2023/05/01 20:45:24 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/05/02 18:02:50 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,28 @@ int	check_philosophers(t_philo *philo)
 	return (ret);
 }
 
+void	one_philo_action(t_philo *philo)
+{
+	check_dead_philo(philo, philo->info);
+	pthread_mutex_lock(&philo->l_fork);
+	print_philo_status(philo, "has taken a fork", 3);
+	pthread_mutex_lock(&philo->info->m_action);
+	philo->last_eat_time = get_current_time();
+	pthread_mutex_unlock(&philo->info->m_action);
+	wait_action_time(philo->info->eat);
+	pthread_mutex_unlock(&philo->l_fork);
+}
+
 void	*action(void *argv)
 {
 	t_philo	*philo;
 
 	philo = (t_philo *)argv;
 	if (philo->info->n_philo == 1)
+	{
+		one_philo_action(philo);
 		return (NULL);
+	}
 	if (philo->id % 2 == 0)
 		wait_action_time(philo->info->eat / 10);
 	while (1)
