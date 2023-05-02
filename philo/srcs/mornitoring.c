@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 17:33:20 by jimpark           #+#    #+#             */
-/*   Updated: 2023/05/01 16:29:04 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/05/02 22:13:18 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,14 @@ void	mornitoring_philo(t_philo *philo, t_info *info)
 	{
 		if (check_dead_philo(philo, info))
 			break ;
+		pthread_mutex_lock(&info->m_action);
 		if ((info->argc == 6) && (info->full_philo == info->n_philo))
 		{
-			pthread_mutex_lock(&info->m_action);
 			info->finish = 1;
 			pthread_mutex_unlock(&info->m_action);
 			break ;
 		}
+		pthread_mutex_unlock(&info->m_action);
 		usleep(10);
 	}
 }
