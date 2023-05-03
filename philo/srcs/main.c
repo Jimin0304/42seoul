@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 18:16:06 by jimpark           #+#    #+#             */
-/*   Updated: 2023/05/02 18:45:59 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/05/03 20:33:08 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,5 @@ int	main(int argc, char *argv[])
 		return (print_err("mutex_init"));
 	if (start_philo(philo, &info))
 		return (print_err("philo"));
+	free (philo);
 }
