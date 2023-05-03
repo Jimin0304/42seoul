@@ -6,13 +6,13 @@
 /*   By: jimpark <jimpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 19:28:37 by jimpark           #+#    #+#             */
-/*   Updated: 2022/07/27 21:35:46 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/05/03 20:35:57 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-cha r	*ft_strdup(const char *s1)
+char	*ft_strdup(const char *s1)
 {
 	int		size;
 	char	*dest;
