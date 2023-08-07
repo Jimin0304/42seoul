@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 14:55:26 by jimpark           #+#    #+#             */
-/*   Updated: 2023/08/07 22:50:21 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/08/08 02:42:05 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ void	Contact::checkEOF(void)
 int	Contact::checkASCII(std::string str)
 {
 	for (int i = 0; i < (int)str.length(); i++) {
-		if (str[i] >= 32 && str[i] <= 126)
-			return (1);
+		if (str[i] < 32 || str[i] > 126)
+			return (0);
 	}
-	return (0);
+	return (1);
 }
 
 void	Contact::EnterInformation(void)
@@ -37,9 +37,11 @@ void	Contact::EnterInformation(void)
 		std::cout << "Enter the first name: ";
 		std::getline(std::cin, this->firstName);
 		Contact::checkEOF();
-		if (!this->firstName.empty())
+		if (this->firstName.empty())
 			continue ;
-		if (!Contact::checkASCII(this->firstName))
+		if (Contact::checkASCII(this->firstName))
+			break ;
+		else
 			std::cout << "It contains an impossible character ..." << std::endl;
 	}
 	while (1)
@@ -47,9 +49,11 @@ void	Contact::EnterInformation(void)
 		std::cout << "Enter the last name: ";
 		std::getline(std::cin, this->lastName);
 		Contact::checkEOF();
-		if (!this->lastName.empty())
+		if (this->lastName.empty())
 			continue ;
-		if (!Contact::checkASCII(this->lastName))
+		if (Contact::checkASCII(this->lastName))
+			break ;
+		else
 			std::cout << "It contains an impossible character ..." << std::endl;
 	}
 	while (1)
@@ -57,9 +61,11 @@ void	Contact::EnterInformation(void)
 		std::cout << "Enter the nickname: ";
 		std::getline(std::cin, this->nickName);
 		Contact::checkEOF();
-		if (!this->nickName.empty())
+		if (this->nickName.empty())
 			continue ;
-		if (!Contact::checkASCII(this->nickName))
+		if (Contact::checkASCII(this->nickName))
+			break ;
+		else
 			std::cout << "It contains an impossible character ..." << std::endl;
 	}
 	while (1)
@@ -98,7 +104,7 @@ void	Contact::printAllContact(void)
 
 void	Contact::printContact(void)
 {
-	std::cout << "this first name is " << this->firstName << std::endl;
-	std::cout << "this last name is " << this->lastName << std::endl;
-	std::cout << "this nickname is " << this->nickName << std::endl;
+	std::cout << "This first name is " << this->firstName << std::endl;
+	std::cout << "This last name is " << this->lastName << std::endl;
+	std::cout << "This nickname is " << this->nickName << std::endl;
 }

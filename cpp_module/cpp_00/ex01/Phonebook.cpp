@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 14:15:06 by jimpark           #+#    #+#             */
-/*   Updated: 2023/08/07 22:44:49 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/08/08 02:39:44 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,15 @@ void	Phonebook::PrintContacts(void)
 			std::cout << "EOF entered ..." << std::endl;
 			exit(1);
 		}
-		if (index.length() > 1 || index[0] != 1 || index[0] != 2 || index[0] != 3 || index[0] != 4 || index[0] != 5 || index[0] != 6 || index[0] != 7 || index[0] != 8 || index[0] != 9)
+		if (index.length() > 1 || (index[0] != '1' && index[0] != '2' && index[0] != '3' && index[0] != '4' && index[0] != '5' && index[0] != '6' && index[0] != '7' && index[0] != '8'))
 			std::cout << "Wrong index..." << std::endl;
-		num = index[0] - 48;
-		if (num <= this->index)
-			this->contacts[num - 1].printContact();
 		else
-			std::cout << "Wrong index..." << std::endl;
+		{
+			num = index[0] - 48;
+			if (num <= this->index)
+				this->contacts[num - 1].printContact();
+			else
+				std::cout << "Wrong index..." << std::endl;
+		}
 	}
 }
