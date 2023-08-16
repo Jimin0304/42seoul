@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 14:55:26 by jimpark           #+#    #+#             */
-/*   Updated: 2023/08/08 02:42:05 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/08/16 18:44:12 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	Contact::checkEOF(void)
 
 int	Contact::checkASCII(std::string str)
 {
-	for (int i = 0; i < (int)str.length(); i++) {
+	for (int i = 0; i < static_cast<int>(str.length()); i++) {
 		if (str[i] < 32 || str[i] > 126)
 			return (0);
 	}

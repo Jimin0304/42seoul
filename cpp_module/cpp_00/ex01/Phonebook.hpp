@@ -6,7 +6,7 @@
 /*   By: jimpark <jimpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 14:15:12 by jimpark           #+#    #+#             */
-/*   Updated: 2023/08/07 22:39:49 by jimpark          ###   ########.fr       */
+/*   Updated: 2023/08/16 18:43:26 by jimpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ class Phonebook
 
 		void	AddContact(void);
 		void	PrintContacts(void);
-		int		ft_stoi(std::string);
 	
 	private:
 
