@@ -8,6 +8,9 @@ int main(void)
     stack.announce();
     heap->announce();
     randomChump("Chump");
-    
+
 	delete heap;
+
+    // system("leaks zombie");
+    return (0);
 }
