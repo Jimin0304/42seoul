@@ -14,7 +14,7 @@ Dog::Dog( const Dog & src )
 
 Dog::~Dog()
 {
-	td::cout << "Dog destructor called" << std::endl;
+	std::cout << "Dog destructor called" << std::endl;
 }
 
 Dog &				Dog::operator=( Dog const & rhs )
@@ -27,7 +27,7 @@ Dog &				Dog::operator=( Dog const & rhs )
 	return *this;
 }
 
-void Dog::makeSound()
+void Dog::makeSound() const
 {
 	std::cout << "Barkkkkk Barkkkkk!" << std::endl;
 }

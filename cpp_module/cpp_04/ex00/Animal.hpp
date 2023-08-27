@@ -15,8 +15,8 @@ class Animal
 
 		Animal &		operator=( Animal const & rhs );
 
-		virtual void makeSound();
-		std::string	getType();
+		virtual void makeSound() const;
+		std::string	getType() const;
 		void	setType( std::string type );
 
 	protected:
