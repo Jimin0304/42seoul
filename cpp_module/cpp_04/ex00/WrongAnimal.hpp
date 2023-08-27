@@ -11,7 +11,7 @@ class WrongAnimal
 
 		WrongAnimal();
 		WrongAnimal( WrongAnimal const & src );
-		~WrongAnimal();
+		virtual ~WrongAnimal();
 
 		WrongAnimal &		operator=( WrongAnimal const & rhs );
 
