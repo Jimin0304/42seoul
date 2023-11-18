@@ -5,8 +5,8 @@
 # include <string>
 # include <stdexcept>
 
-#include "Form.hpp"
-class Form;
+#include "AForm.hpp"
+class AForm;
 
 class Bureaucrat
 {
@@ -34,7 +34,7 @@ class Bureaucrat
 		void increaseGrade();
 		void decreaseGrade();
 
-		void signForm( Form& form );
+		void signForm( AForm& form );
 
 	private:
 

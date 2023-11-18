@@ -6,16 +6,14 @@ int main() {
 		Bureaucrat jimpark("jimpark", 1);
 		Form form("success form", 50, 50);
 		jimpark.signForm(form);
-		std::cout << form << std::endl;
 	} catch(std::exception& e) {
 		std::cerr << e.what();
 	}
-	
+
 	try {
 		Bureaucrat jimpark("jimpark", 51);
 		Form form("failed form", 50, 50);
 		jimpark.signForm(form);
-		std::cout << form << std::endl;
 	} catch(std::exception& e) {
 		std::cerr << e.what();
 	}
