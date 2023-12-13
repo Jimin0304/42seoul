@@ -2,6 +2,7 @@
 # define SHRUBBERYCREATIONFORM_HPP
 
 # include "AForm.hpp"
+# include <fstream>
 
 class ShrubberyCreationForm : public AForm
 {
@@ -18,6 +19,11 @@ class ShrubberyCreationForm : public AForm
 		void execute(Bureaucrat const & executor) const;
 
 		std::string getTarget() const;
+
+		class FileOpenError : public std::exception {
+			public:
+				virtual const char* what() const throw();
+		};
 
 	private:
 

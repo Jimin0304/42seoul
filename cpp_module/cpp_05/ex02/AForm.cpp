@@ -35,7 +35,7 @@ const char* AForm::GradeTooLowException::what() const throw()
 
 const char* AForm::AFormNotSignedException::what() const throw()
 {
-	return "AForm is not signed...\n"
+	return "AForm is not signed...\n";
 }
 
 std::string AForm::getName() const { return (name); }
