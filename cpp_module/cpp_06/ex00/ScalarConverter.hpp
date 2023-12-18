@@ -18,7 +18,7 @@ class ScalarConverter
 
 		static void convert(const std::string& input);
 
-		class WrongType : public std::exception {
+		class NotANumber : public std::exception {
 			public:
 				virtual const char* what() const throw();
 		};
