@@ -19,10 +19,12 @@ static int	findConvertType(const std::string& input)
 
 	if (input.std::string::length() == 1 && !isdigit(input[0]))
 		return (0);		// char
-	if (input == "inff" || input == "-inff" || input == "+inff" || input == "nanf")
-		return (2);		// float
-	if (input == "inf" || input == "-inf" || input == "+inf" || input == "nan")
-		return (3);		// double
+	if (input == "inff" || input == "-inff" || input == "+inff")
+		return (5);		// float inff
+	if (input == "inf" || input == "-inf" || input == "+inf")
+		return (6);		// double inf
+	if (input == "nan" || input == "nanf")
+		return (4);
 	for (size_t i = 0; i < input.std::string::length(); i++) {
 		if (input[0] == '+' || input[0] == '-')
 			continue;
@@ -46,134 +48,87 @@ static int	findConvertType(const std::string& input)
 	return (1);			// int
 }
 
-static void printChar(int input)
+static void printChar(const char* input, int index)
 {
-	if (input > std::numeric_limits<char>::max() || input < std::numeric_limits<char>::min())
+	if (index == 0)
+		const char* val = input;
+	else if (index == 1)
+		int val = std::atoi(input);
+	else if (index == 2)
+		float val = std::atof(input);
+	else if (index == 3) {
+		char* ptr = NULL;
+		double val = std::strtod(input, &ptr);
+	}
+	
+	if (static_cast<char>(val) > std::numeric_limits<char>::max() || static_cast<char>(val) < std::numeric_limits<char>::min())	// char overflow
 		std::cout << "char: impossible" << std::endl;
-	else if (std::isprint(input))
-		std::cout << "char: '" << static_cast<char>(input) << "'" << std::endl;
+	else if (std::isprint(static_cast<int>(val)))
+		std::cout << "char: '" << static_cast<char>(val) << "'" << std::endl;
 	else
 		std::cout << "char: Non displayable" << std::endl;
 }
 
-static void printInt(int ivalue)
+static void printInt(const char* input, int index)
 {
-	if (ivalue > std::numeric_limits<int>::max() || ivalue < std::numeric_limits<int>::min())	// int overflow
+	if (index == 0)
+		const char* val = input;
+	else if (index == 1)
+		int val = std::atoi(input);
+	else if (index == 2)
+		float val = std::atof(input);
+	else if (index == 3) {
+		char* ptr = NULL;
+		double val = std::strtod(input, &ptr);
+	}
+
+	if (static_cast<int>(val) > std::numeric_limits<int>::max() || static_cast<int>(val) < std::numeric_limits<int>::min())	// int overflow
 		std::cout << "int: impossible" << std::endl;
 	else
-		std::cout << "int: " << ivalue << std::endl;
+		std::cout << "int: " << static_cast<int>(val) << std::endl;
 }
 
-static void printFloat(const std::string& input)
+static void printFloat(const char* input, int index)
 {
-	char* ptr = NULL;
-	double dvalue = std::strtod(input.c_str(), &ptr);
-	if (static_cast<float>(dvalue) > std::numeric_limits<float>::max() || static_cast<float>(dvalue) < std::numeric_limits<float>::min()) {	// float overflow
-		std::cout << "float: impossible" << std::endl;
+	if (index == 0)
+		const char* val = input;
+	else if (index == 1)
+		int val = std::atoi(input);
+	else if (index == 2)
+		float val = std::atof(input);
+	else if (index == 3) {
+		char* ptr = NULL;
+		double val = std::strtod(input, &ptr);
 	}
+
+	if (static_cast<float>(val) > std::numeric_limits<float>::max() || static_cast<float>(val) < std::numeric_limits<float>::min())	// float overflow
+		std::cout << "float: impossible" << std::endl;
 	else {
 		std::cout.precision(1);
     	std::cout << std::fixed;
-		std::cout << "float: " << static_cast<float>(dvalue) << 'f' << std::endl;
+		std::cout << "float: " << static_cast<float>(val) << 'f' << std::endl;
 	}
 }
 
-static void printDouble(const std::string& input)
+static void printDouble(const char* input, int index)
 {
-	char* ptr = NULL;
-	double dvalue = std::strtod(input.c_str(), &ptr);
-	if (input == "inff" || input == "-inff" || input == "+inff")
-	{
-		std::cout << "double: " << input.substr(0, input.length() - 1) << std::endl;
+	if (index == 0)
+		const char* val = input;
+	else if (index == 1)
+		int val = std::atoi(input);
+	else if (index == 2)
+		float val = std::atof(input);
+	else if (index == 3) {
+		char* ptr = NULL;
+		double val = std::strtod(input, &ptr);
 	}
-	else if (dvalue > std::numeric_limits<double>::max() || dvalue < std::numeric_limits<double>::min())	// double overflow
+
+	if (val > std::numeric_limits<double>::max() || val < std::numeric_limits<double>::min())	// double overflow
 		std::cout << "double: impossible" << std::endl;
 	else {
 		std::cout.precision(1);
     	std::cout << std::fixed;
-		std::cout << "double: " << dvalue << std::endl;
-	}
-}
-
-static void convertChar(char input)
-{
-	int intType = static_cast<int>(input);
-	
-	printChar(intType);
-	std::cout << "int: " << intType << std::endl;
-	std::cout << "float: " << static_cast<float>(input) << ".0f" << std::endl;
-	std::cout << "double: " << static_cast<double>(input) << ".0" << std::endl;
-}
-
-static void convertInt(const std::string& input)
-{
-	int	intType, len;
-	const char* charInput = input.c_str();
-
-	intType = std::atoi(charInput);
-	printChar(intType);
-	len = input.std::string::length();
-	if (input[0] == '+' || input[0] == '-')
-		len -= 1;
-	if ((len > 10) || (len == 10 && intType < 0))	// int overflow
-		std::cout << "int: impossible" << std::endl;
-	else
-		std::cout << "int: " << intType << std::endl;
-	std::cout << "float: " << static_cast<float>(intType) << ".0f" << std::endl;
-	std::cout << "double: " << static_cast<double>(intType) << ".0" << std::endl;
-}
-
-static void convertFloat(const std::string& input)
-{
-	if (input == "nanf")
-		throw ScalarConverter::NotANumber();
-	
-	char* ptr = NULL;
-	double dvalue = std::strtod(input.c_str(), &ptr);
-	if (input == "inff" || input == "-inff" || input == "+inff")
-	{
-		std::cout << "char: impossible" << std::endl;
-		std::cout << "int: impossible" << std::endl;
-		std::cout << "float: " << input << std::endl;
-	}
-	else if (static_cast<float>(dvalue) > std::numeric_limits<float>::max() || static_cast<float>(dvalue) < std::numeric_limits<float>::min()) {	// float overflow
-		std::cout << "char: impossible" << std::endl;
-		std::cout << "int: impossible" << std::endl;
-		std::cout << "float: impossible" << std::endl;
-	}
-	else {
-		printChar(static_cast<int>(dvalue));
-		printInt(static_cast<int>(dvalue));
-		printFloat(input);
-	}
-	printDouble(input);
-}
-
-static void convertDouble(const std::string& input)
-{
-	if (input == "nan")
-		throw ScalarConverter::NotANumber();
-	
-	char* ptr = NULL;
-	double dvalue = std::strtod(input.c_str(), &ptr);
-	if (input == "inf" || input == "-inf" || input == "+inf")
-	{
-		std::cout << "char: impossible" << std::endl;
-		std::cout << "int: impossible" << std::endl;
-		std::cout << "float: " << input << "f" << std::endl;
-		std::cout << "double: " << input << std::endl;
-	}
-	else if (dvalue > std::numeric_limits<double>::max() || dvalue < std::numeric_limits<double>::min()) {	// double overflow
-		std::cout << "char: impossible" << std::endl;
-		std::cout << "int: impossible" << std::endl;
-		std::cout << "float: impossible" << std::endl;
-		std::cout << "double: impossible" << std::endl;
-	}
-	else {
-		printChar(static_cast<int>(dvalue));
-		printInt(static_cast<int>(dvalue));
-		printFloat(input);
-		printDouble(input);
+		std::cout << "double: " << static_cast<double>(val) << std::endl;
 	}
 }
 
@@ -181,22 +136,27 @@ void ScalarConverter::convert(const std::string& input)
 {
 	int type = findConvertType(input);
 
-	switch(type) {
-		case 0:
-			convertChar(input[0]);
-			break ;
-		case 1:
-			convertInt(input);
-			break ;
-		case 2:
-			convertFloat(input);
-			break ;
-		case 3:
-			convertDouble(input);
-			break ;
-		case 4:
-			throw ScalarConverter::NotANumber();
+	if (type == 4)
+		throw ScalarConverter::NotANumber();
+	else if (type == 5) {
+		std::cout << "char: impossible" << std::endl;
+		std::cout << "int: impossible" << std::endl;
+		std::cout << "float: " << input << std::endl;
+		std::cout << "double: " << input.substr(0, input.length() - 1) << std::endl;
+		return ;
 	}
+	else if (type == 6) {
+		std::cout << "char: impossible" << std::endl;
+		std::cout << "int: impossible" << std::endl;
+		std::cout << "float: " << input << "f" << std::endl;
+		std::cout << "double: " << input << std::endl;
+		return ;
+	}
+
+	printChar(input.c_str(), type);
+	printInt(input.c_str(), type);
+	printFloat(input.c_str(), type);
+	printDouble(input.c_str(), type);
 }
 
 const char* ScalarConverter::NotANumber::what() const throw() 
