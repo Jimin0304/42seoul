@@ -6,16 +6,13 @@
 # include <stdexcept>
 # include <cctype>
 # include <sstream>
+# include <limits> 
+# include <cstdlib>
 
 class ScalarConverter
 {
 
 	public:
-
-		ScalarConverter( ScalarConverter const & src );
-		~ScalarConverter();
-
-		ScalarConverter &		operator=( ScalarConverter const & rhs );
 
 		static void convert(const std::string& input);
 
@@ -27,6 +24,11 @@ class ScalarConverter
 	private:
 
 		ScalarConverter();
+		ScalarConverter( ScalarConverter const & src );
+		~ScalarConverter();
+
+		ScalarConverter &		operator=( ScalarConverter const & rhs );
+
 
 };
 
