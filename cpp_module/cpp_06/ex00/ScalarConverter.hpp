@@ -3,7 +3,6 @@
 
 # include <iostream>
 # include <string>
-# include <stdexcept>
 # include <cctype>
 # include <sstream>
 # include <limits> 
@@ -15,11 +14,6 @@ class ScalarConverter
 	public:
 
 		static void convert(const std::string& input);
-
-		class NotANumber : public std::exception {
-			public:
-				virtual const char* what() const throw();
-		};
 
 	private:
 

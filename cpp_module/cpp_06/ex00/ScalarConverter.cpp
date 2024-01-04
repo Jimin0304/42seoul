@@ -24,7 +24,7 @@ static int	findConvertType(const std::string& input)
 	if (input == "inf" || input == "-inf" || input == "+inf")
 		return (6);		// double inf
 	if (input == "nan" || input == "nanf")
-		return (4);
+		return (4);		// Not A Numbeer
 	for (size_t i = 0; i < input.std::string::length(); i++) {
 		if (input[0] == '+' || input[0] == '-')
 			continue;
@@ -185,7 +185,11 @@ void ScalarConverter::convert(const std::string& input)
 			convertDouble(input);
 			break ;
 		case 4:
-			throw ScalarConverter::NotANumber();
+			std::cout << "char: impossible" << std::endl;
+			std::cout << "int: impossible" << std::endl;
+			std::cout << "float: nanf" << std::endl;
+			std::cout << "double: nan" << std::endl;
+			break ;
 		case 5:
 			std::cout << "char: impossible" << std::endl;
 			std::cout << "int: impossible" << std::endl;
@@ -199,9 +203,4 @@ void ScalarConverter::convert(const std::string& input)
 			std::cout << "double: " << input << std::endl;
 			break ;
 	}
-}
-
-const char* ScalarConverter::NotANumber::what() const throw() 
-{
-	return "char: impossible\nint: impossible\nfloat: nanf\ndouble: nan\n";
 }
