@@ -58,12 +58,12 @@ Array<T>::Array( Array const & src ) {
 template <typename T>
 Array<T> &		Array<T>::operator=( Array const & rhs ) {
 	if (this != &rhs) {
+		delete[] array;
 		if (rhs.len == 0) {
 			len = 0;
 			array = NULL;
 		}
 		else {
-			delete[] array;
 			len = rhs.len;
 			array = new T[len];
 			for (unsigned int i = 0; i < len; i++)
