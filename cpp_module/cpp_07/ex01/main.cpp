@@ -13,4 +13,5 @@ int main()
     std::cout << "---------- a increasement ----------" << std::endl;
     iter(a, 10, increaseData);
     iter(a, 10, print);
+
 }
