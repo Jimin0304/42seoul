@@ -11,7 +11,7 @@ int main()
     iter(b, 10, print<const int>);
 
     std::cout << "---------- a increasement ----------" << std::endl;
-    iter(a, 10, increaseData);
-    iter(a, 10, print);
+    iter(a, 10, increaseData<int>);
+    iter(a, 10, print<int>);
 
 }

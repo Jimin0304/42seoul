@@ -3,16 +3,8 @@
 
 #include <iostream>
 
-template <typename T>
-void iter(T *address, std::size_t length, void (*f)(T &))
-{
-    for (std::size_t i = 0; i < length; i++) {
-        f(address[i]);
-    }
-}
-
-template <typename T>
-void iter(const T *address, std::size_t length, void (*f)(const T &))
+template <typename T, typename F>
+void iter(T *address, std::size_t length, F f)
 {
     for (std::size_t i = 0; i < length; i++) {
         f(address[i]);
