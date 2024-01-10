@@ -4,7 +4,14 @@ int main(int argc, char *argv[])
 {
     if (argc != 2)
     {
-        std::cerr << "Error: Wrong argument." << std::endl;
+        std::cerr << "Error: could not open file." << std::endl;
         return 1;
     }
+
+    BitcoinExchange bit;
+
+    bit.ParsingCsvFile();
+    bit.PrintBitcoin(argv[1]);
+
+    return 0;
 }

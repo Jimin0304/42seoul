@@ -6,7 +6,10 @@
 #include <fstream>
 #include <stdexcept>
 #include <string>
-
+#include <sstream>
+#include <vector>
+#include <cstdlib>
+#include <algorithm>
 
 class BitcoinExchange
 {
@@ -19,9 +22,13 @@ class BitcoinExchange
 		BitcoinExchange &		operator=( BitcoinExchange const & rhs );
 
 		void ParsingCsvFile();
+		std::vector<std::string> splitString(const std::string& input, char delimiter);
+		void CheckDateFormat(std::string date);
+		double CheckValue(std::string value);
+		void PrintBitcoin(char *inputFile);
 
 	private:
-		std::map<std::string, str::string> dataMap;
+		std::map<std::string, double> dataMap;
 };
 
 #endif
