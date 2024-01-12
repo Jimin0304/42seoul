@@ -12,7 +12,7 @@ BitcoinExchange &				BitcoinExchange::operator=( BitcoinExchange const & rhs )
 	return *this;
 }
 
-std::vector<std::string> BitcoinExchange::splitString(const std::string& input, char delimiter) {
+std::vector<std::string> BitcoinExchange::SplitString(const std::string& input, char delimiter) {
     std::vector<std::string> tokens;
     std::istringstream tokenStream(input);
     std::string token;
@@ -35,7 +35,7 @@ void BitcoinExchange::ParsingCsvFile()
 		std::string line;
 		std::getline(file, line);	// 첫 줄 제외
     	while (std::getline(file, line)) {
-			std::vector<std::string> result = splitString(line, ',');
+			std::vector<std::string> result = SplitString(line, ',');
 
 			std::string key = result[0];
 			char *tmp;
@@ -57,7 +57,7 @@ void BitcoinExchange::CheckDateFormat(std::string date)
 		throw std::logic_error("bad input => " + date);
 		
 	int year, month, day;
-	std::vector<std::string> result = splitString(date, '-');
+	std::vector<std::string> result = SplitString(date, '-');
 	std::istringstream(result[0]) >> year;
 	std::istringstream(result[1]) >> month;
 	std::istringstream(result[2]) >> day;
@@ -103,7 +103,7 @@ void BitcoinExchange::PrintBitcoin(char *inputFile)
 	while (std::getline(file, line)) {
 		if (line.empty()) { continue; }
 		try {
-			std::vector<std::string> result = splitString(line, '|');
+			std::vector<std::string> result = SplitString(line, '|');
 			// if (result.size() != 2)
 			// 	throw std::logic_error("invalid format. [date | value]");
 			std::string date = result[0];

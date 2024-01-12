@@ -22,7 +22,7 @@ class BitcoinExchange
 		BitcoinExchange &		operator=( BitcoinExchange const & rhs );
 
 		void ParsingCsvFile();
-		std::vector<std::string> splitString(const std::string& input, char delimiter);
+		std::vector<std::string> SplitString(const std::string& input, char delimiter);
 		void CheckDateFormat(std::string date);
 		double CheckValue(std::string value);
 		void PrintBitcoin(char *inputFile);
