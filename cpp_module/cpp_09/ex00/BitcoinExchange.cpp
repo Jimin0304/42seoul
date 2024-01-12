@@ -12,19 +12,6 @@ BitcoinExchange &				BitcoinExchange::operator=( BitcoinExchange const & rhs )
 	return *this;
 }
 
-std::vector<std::string> BitcoinExchange::SplitString(const std::string& input, char delimiter) {
-    std::vector<std::string> tokens;
-    std::istringstream tokenStream(input);
-    std::string token;
-
-    while (std::getline(tokenStream, token, delimiter)) {
-		token.erase(std::remove(token.begin(), token.end(), ' '), token.end());
-        tokens.push_back(token);
-    }
-
-    return tokens;
-}
-
 void BitcoinExchange::ParsingCsvFile()
 {
 	try {
@@ -35,14 +22,15 @@ void BitcoinExchange::ParsingCsvFile()
 		std::string line;
 		std::getline(file, line);	// 첫 줄 제외
     	while (std::getline(file, line)) {
-			std::vector<std::string> result = SplitString(line, ',');
+			size_t index = line.find(",");
+			std::string key = line.substr(0, index);
+			std::string value = line.substr(index + 1);
 
-			std::string key = result[0];
 			char *tmp;
-			double value = std::strtod(result[1].c_str(), &tmp);
+			double dvalue = std::strtod(value.c_str(), &tmp);
 			if (*tmp != '\0')	// strtod 예외처리
 				throw std::logic_error("invalid argument in csv file.");
-            dataMap.insert(std::make_pair(key, value));
+            dataMap.insert(std::make_pair(key, dvalue));
 		}
 
         file.close();
@@ -57,10 +45,13 @@ void BitcoinExchange::CheckDateFormat(std::string date)
 		throw std::logic_error("bad input => " + date);
 		
 	int year, month, day;
-	std::vector<std::string> result = SplitString(date, '-');
-	std::istringstream(result[0]) >> year;
-	std::istringstream(result[1]) >> month;
-	std::istringstream(result[2]) >> day;
+	size_t firstIndex = date.find("-");
+	size_t SecondIndex = date.find("-", firstIndex + 1);
+	if (firstIndex == std::string::npos || SecondIndex == std::string::npos)
+		throw std::logic_error("bad input => " + date);
+	std::istringstream(date.substr(0, firstIndex)) >> year;
+	std::istringstream(date.substr(firstIndex + 1, SecondIndex - (firstIndex + 1))) >> month;
+	std::istringstream(date.substr(SecondIndex + 1)) >> day;
 
 	if (year < 1000 || year > 9999 || month < 1 || month > 12 || day < 1 || day > 31)
 		throw std::logic_error("bad input => " + date);
@@ -103,11 +94,11 @@ void BitcoinExchange::PrintBitcoin(char *inputFile)
 	while (std::getline(file, line)) {
 		if (line.empty()) { continue; }
 		try {
-			std::vector<std::string> result = SplitString(line, '|');
-			// if (result.size() != 2)
-			// 	throw std::logic_error("invalid format. [date | value]");
-			std::string date = result[0];
-			std::string value = result[1];
+			size_t index = line.find("|");
+			if (index == std::string::npos)
+				throw std::logic_error("invalid format. [date | value]");
+			std::string date = line.substr(0, index - 1);
+			std::string value = line.substr(index + 2);
 
 			if (line != "date | value")	// 첫 줄 예외처리
 			{
