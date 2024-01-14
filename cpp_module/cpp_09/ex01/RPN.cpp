@@ -34,20 +34,21 @@ void RPN::RPNResult(std::string input)
 				}
 
 				if (input[i] == '+')
-					stack.push(firstNum + secondNum);
+					stack.push(secondNum + firstNum);
 				else if (input[i] == '-')
-					stack.push(firstNum - secondNum);
+					stack.push(secondNum - firstNum);
 				else if (input[i] == '*')
-					stack.push(firstNum * secondNum);
+					stack.push(secondNum * firstNum);
 				else if (input[i] == '/') {
-					if (secondNum == 0)
+					if (firstNum == 0)
 						throw std::logic_error("Error: cannot be divided by zero.");
-					stack.push(firstNum / secondNum);
+					stack.push(secondNum / firstNum);
 				}
 			}
 		}
 		if (stack.size() > 1)
 			throw std::logic_error("Error: invalid expression.");
+		std::cout << stack.top() << std::endl;
 	} catch (const std::exception& e) {
 		std::cerr << e.what() << std::endl;
 	}	
