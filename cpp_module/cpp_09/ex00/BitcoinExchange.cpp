@@ -123,3 +123,9 @@ void BitcoinExchange::PrintBitcoin(char *inputFile)
 	}
 	file.close();
 }
+
+/*
+1. 99.9999999 -> 계산값을 문자열로 바꿔서 문자열로 출력
+2. csv 파싱
+3. input 할 때 구분자가 " | "인가.....
+*/
