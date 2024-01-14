@@ -22,9 +22,9 @@ void BitcoinExchange::ParsingCsvFile()
 		std::string line;
 		std::getline(file, line);	// 첫 줄 제외
     	while (std::getline(file, line)) {
-			size_t index = line.find(",");
-			std::string key = line.substr(0, index);
-			std::string value = line.substr(index + 1);
+			size_t index = line.std::string::find(",");
+			std::string key = line.std::string::substr(0, index);
+			std::string value = line.std::string::substr(index + 1);
 
 			char *tmp;
 			double dvalue = std::strtod(value.c_str(), &tmp);
@@ -45,13 +45,13 @@ void BitcoinExchange::CheckDateFormat(std::string date)
 		throw std::logic_error("bad input => " + date);
 		
 	int year, month, day;
-	size_t firstIndex = date.find("-");
-	size_t SecondIndex = date.find("-", firstIndex + 1);
+	size_t firstIndex = date.std::string::find("-");
+	size_t SecondIndex = date.std::string::find("-", firstIndex + 1);
 	if (firstIndex == std::string::npos || SecondIndex == std::string::npos)
 		throw std::logic_error("bad input => " + date);
-	std::istringstream(date.substr(0, firstIndex)) >> year;
-	std::istringstream(date.substr(firstIndex + 1, SecondIndex - (firstIndex + 1))) >> month;
-	std::istringstream(date.substr(SecondIndex + 1)) >> day;
+	std::istringstream(date.std::string::substr(0, firstIndex)) >> year;
+	std::istringstream(date.std::string::substr(firstIndex + 1, SecondIndex - (firstIndex + 1))) >> month;
+	std::istringstream(date.std::string::substr(SecondIndex + 1)) >> day;
 
 	if (year < 1000 || year > 9999 || month < 1 || month > 12 || day < 1 || day > 31)
 		throw std::logic_error("bad input => " + date);
@@ -94,11 +94,11 @@ void BitcoinExchange::PrintBitcoin(char *inputFile)
 	while (std::getline(file, line)) {
 		if (line.empty()) { continue; }
 		try {
-			size_t index = line.find("|");
+			size_t index = line.std::string::find("|");
 			if (index == std::string::npos)
 				throw std::logic_error("invalid format. [date | value]");
-			std::string date = line.substr(0, index - 1);
-			std::string value = line.substr(index + 2);
+			std::string date = line.std::string::substr(0, index - 1);
+			std::string value = line.std::string::substr(index + 2);
 
 			if (line != "date | value")	// 첫 줄 예외처리
 			{
