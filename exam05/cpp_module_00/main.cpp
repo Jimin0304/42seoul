@@ -1,7 +1,13 @@
 #include "Warlock.hpp"
 
+// void leaks()
+// {
+//   system("leaks a.out");
+// }
+
 int main()
 {
+//   atexit(leaks);
   Warlock const richard("Richard", "Mistress of Magma");
   richard.introduce();
   std::cout << richard.getName() << " - " << richard.getTitle() << std::endl;
