@@ -20,11 +20,11 @@ class PmergeMe
 
 		void ParseArgv(int argc, char *argv[]);
 		int ValidateInput(std::string input);
-		void MISort();
 
 	private:
 
-		std::vector<int> _vector;
+		std::vector<int> _input;
+		std::vector<std::pair<int. int>> _vectorPair;
 
 };
 

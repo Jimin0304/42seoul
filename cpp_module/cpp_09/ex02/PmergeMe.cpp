@@ -1,13 +1,13 @@
 #include "PmergeMe.hpp"
 
 PmergeMe::PmergeMe() {}
-PmergeMe::PmergeMe( const PmergeMe & src ): _vector(src._vector) {}
+PmergeMe::PmergeMe( const PmergeMe & src ): _input(src._input) {}
 PmergeMe::~PmergeMe() {}
 PmergeMe &				PmergeMe::operator=( PmergeMe const & rhs )
 {
 	if ( this != &rhs )
 	{
-		this->_vector = rhs._vector;
+		this->_input = rhs._input;
 	}
 	return *this;
 }
@@ -38,19 +38,10 @@ void PmergeMe::ParseArgv(int argc, char *argv[])
 		for (int i = 1; i < argc; i++) {
 			std::string input(argv[i]);
 			int value = ValidateInput(input);
-			if(std::find(_vector.begin(), _vector.end(), value) != _vector.end())	// 중복 검사
+			if(std::find(_input.begin(), _input.end(), value) != _input.end())	// 중복 검사
 				throw std::logic_error("duplicate number.");
-			_vector.push_back(value);
+			_input.push_back(value);
 		}
-	} catch(const std::exception& e) {
-		std::cerr << "Error: " << e.what() << std::endl;
-	}
-}
-
-void PmergeMe::MISort()
-{
-	try {
-
 	} catch(const std::exception& e) {
 		std::cerr << "Error: " << e.what() << std::endl;
 	}
