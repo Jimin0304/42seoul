@@ -3,7 +3,7 @@
 int main(int argc, char *argv[])
 {
     PmergeMe sort;
-    sort.ParseArgv(argc, argv);
+    sort.VectorFordJohnson();
 
     return 0;
 }

@@ -1,13 +1,16 @@
 #include "PmergeMe.hpp"
 
-PmergeMe::PmergeMe() {}
-PmergeMe::PmergeMe( const PmergeMe & src ): _input(src._input) {}
+PmergeMe::PmergeMe(): _depth(1) {}
+PmergeMe::PmergeMe( const PmergeMe & src ): _input(src._input), _vector(src._vector), _leftNum(src._leftNum), _depth(src._depth) {}
 PmergeMe::~PmergeMe() {}
 PmergeMe &				PmergeMe::operator=( PmergeMe const & rhs )
 {
 	if ( this != &rhs )
 	{
 		this->_input = rhs._input;
+		this->_vector = rhs._vector;
+		this->_leftNum = rhs._leftNum;
+		this->_depth = rhs._depth;
 	}
 	return *this;
 }
@@ -30,7 +33,14 @@ int PmergeMe::ValidateInput(std::string input)
 	return static_cast<int>(value);
 }
 
-void PmergeMe::ParseArgv(int argc, char *argv[])
+int PmergeMe::jacobsthal(int n)
+{
+    if (n == 0) return 1;
+    if (n == 1) return 1;
+    return jacobsthal(n - 1) + 2 * jacobsthal(n - 2);
+}
+
+void PmergeMe::VectorParseArgv(int argc, char *argv[])
 {
 	try {
 		if (argc <= 2)
@@ -45,4 +55,59 @@ void PmergeMe::ParseArgv(int argc, char *argv[])
 	} catch(const std::exception& e) {
 		std::cerr << "Error: " << e.what() << std::endl;
 	}
+}
+
+void PmergeMe::VectorPushBack(std::vector<int> &container, int index, int depth)
+{
+	while (depth)
+	{
+		container.push_back(_input[index++]);
+		--depth;
+	}
+}
+
+void PmergeMe::VectorMerge(int depth)
+{
+	size_t index = 1 << depth;
+	if (index < _input.size())
+	{
+		for (size_t i = 0; i < _input.size(); i += index)
+		{
+			if (i + index/2 < _input.size()) {
+				if (_input[i] > _input[i + index/2]) {
+					VectorPushBack(_vector, i, index/2);
+					VectorPushBack(_vector, i + index/2, index/2);
+				}
+				else {
+					VectorPushBack(_vector, i + index/2, index/2);
+					VectorPushBack(_vector, i, index/2);
+				}
+			} 
+			else {
+				std::vector<int> tmp;
+				VectorPushBack(tmp, i, index/2);
+				_leftNum.push_back(tmp);
+			}
+		}
+		_input.swap(_vector);
+		_vector.clear();
+		VectorMerge(++_depth);
+	}
+}
+
+void PmergMe::VectorInsertion(int turn, int depth)
+{
+	size_t index = 1 << depth;
+	int jacob = jacobsthal(turn);
+	for (size_t i = 0; i < _input.size(); i += index)
+	{
+		// TODO
+	}
+}
+
+void PmergeMe::VectorFordJohnson()
+{
+	VectorParseArgv(argc, argv);
+	VectorMerge(_depth);
+	VectorInsertion(1, _depth);
 }

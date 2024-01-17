@@ -18,13 +18,19 @@ class PmergeMe
 		~PmergeMe();
 		PmergeMe &		operator=( PmergeMe const & rhs );
 
-		void ParseArgv(int argc, char *argv[]);
 		int ValidateInput(std::string input);
+		int jacobsthal(int n);
+		void VectorParseArgv(int argc, char *argv[]);
+		void VectorFordJohnson();
+		void VectorMerge(int depth);
+		void VectorPushBack(std::vector<int> &container, int index, int depth);
 
 	private:
 
 		std::vector<int> _input;
-		std::vector<std::pair<int. int>> _vectorPair;
+		std::vector<int> _vector;
+		std::vector<std::vector<int> > _leftNum;
+		int _depth;
 
 };
 
