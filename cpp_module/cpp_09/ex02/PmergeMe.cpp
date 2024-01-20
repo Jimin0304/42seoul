@@ -95,14 +95,36 @@ void PmergeMe::VectorMerge(int depth)
 	}
 }
 
-void PmergMe::VectorInsertion(int turn, int depth)
+void Pmerge::VectorInsertElements(std::vector<int> mainChain, std::vector<int> pendingElements, int index)
 {
-	size_t index = 1 << depth;
-	int jacob = jacobsthal(turn);
-	for (size_t i = 0; i < _input.size(); i += index)
+	int pendingSize = pendingElements.size() / index;
+	for(int i = 1; jacobsthal(i) < pendingSize; i++)
 	{
 		// TODO
 	}
+
+}
+
+void PmergMe::VectorInsertion(int turn, int depth)
+{
+	size_t index = 1 << depth;
+	std::vector<int> mainChain, pendingElements;
+	for (size_t i = 0; i < _input.size(); i += index)
+	{
+		if (_input[i] < _input[i + index/2]) {
+			VectorPushBack(mainChain, i, index/2);
+			VectorPushBack(pendingElements, i + index/2, index/2);
+		}
+		else {
+			VectorPushBack(mainChain, i + index/2, index/2);
+			VectorPushBack(pendingElements, i, index/2);
+		}
+	}
+	if (_leftNum.back().size() == index/2) {
+		VectorPushBack(pendingElements, i, index/2);
+		_leftNum.back().pop_back();
+	}
+
 }
 
 void PmergeMe::VectorFordJohnson()
