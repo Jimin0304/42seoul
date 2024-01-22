@@ -23,6 +23,7 @@ class BitcoinExchange
 		void ParsingCsvFile();
 		void CheckDateFormat(std::string date);
 		double CheckValue(std::string value);
+		std::string DoubleToString(double value);
 		void PrintBitcoin(char *inputFile);
 
 	private:

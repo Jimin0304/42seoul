@@ -14,29 +14,28 @@ BitcoinExchange &				BitcoinExchange::operator=( BitcoinExchange const & rhs )
 
 void BitcoinExchange::ParsingCsvFile()
 {
-	try {
-        std::ifstream file("data.csv");
-        if (!file.is_open())
-            throw std::runtime_error("failed to open the file.");
+	std::ifstream file("data.csv");
+	if (!file.is_open())
+		throw std::runtime_error("failed to open the file.");
 
-		std::string line;
-		std::getline(file, line);	// 첫 줄 제외
-    	while (std::getline(file, line)) {
-			size_t index = line.std::string::find(",");
-			std::string key = line.std::string::substr(0, index);
-			std::string value = line.std::string::substr(index + 1);
+	std::string line;
+	std::getline(file, line);	// 첫 줄 제외
+	while (std::getline(file, line)) {
+		if (line.empty()) { continue; }
+		size_t index = line.std::string::find(",");
+		std::string key = line.std::string::substr(0, index);
+		std::string value = line.std::string::substr(index + 1);
 
-			char *tmp;
-			double dvalue = std::strtod(value.c_str(), &tmp);
-			if (*tmp != '\0')	// strtod 예외처리
-				throw std::logic_error("invalid argument in csv file.");
-            dataMap.insert(std::make_pair(key, dvalue));
-		}
+		CheckDateFormat(key);				// valid date 검사
+		
+		char *tmp;
+		double dvalue = std::strtod(value.c_str(), &tmp);
+		if (*tmp != '\0')	// strtod 예외처리
+			throw std::logic_error("invalid argument in csv file.");
+		dataMap.insert(std::make_pair(key, dvalue));
+	}
 
-        file.close();
-    } catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
-    }
+	file.close();
 }
 
 void BitcoinExchange::CheckDateFormat(std::string date)
@@ -82,6 +81,16 @@ double BitcoinExchange::CheckValue(std::string value)
 	return dvalue;
 }
 
+std::string BitcoinExchange::DoubleToString(double value)
+{
+	std::ostringstream out;
+    out << std::fixed << std::setprecision(10) << value;
+    std::string str = out.str();
+	str.erase(str.find_last_not_of('0') + 1, std::string::npos);
+	str.erase(str.find_last_not_of('.') + 1, std::string::npos);
+	return str;
+}
+
 void BitcoinExchange::PrintBitcoin(char *inputFile)
 {
 	std::ifstream file(inputFile);
@@ -108,13 +117,13 @@ void BitcoinExchange::PrintBitcoin(char *inputFile)
 				std::map<std::string, double>::iterator iter;
 				iter = dataMap.find(date);
 				if (iter != dataMap.end())	// dataMap에 날짜가 존재하는 경우
-					std::cout << date << " => " << value << " = " << iter->second * dvalue << std::endl;
+					std::cout << date << " => " << value << " = " << DoubleToString(iter->second * dvalue) << std::endl;
 				else {
 					iter = dataMap.upper_bound(date);	// date보다 큰 첫번째 값
 					if (iter == dataMap.begin())	// 직전 날짜가 없는 경우
 						throw std::logic_error("invalid date.");
 					--iter;
-					std::cout << date << " => " << value << " = " << iter->second * dvalue << std::endl;
+					std::cout << date << " => " << value << " = " << DoubleToString(iter->second * dvalue) << std::endl;
 				}
 			}
 		} catch (const std::exception& e) {
@@ -123,9 +132,3 @@ void BitcoinExchange::PrintBitcoin(char *inputFile)
 	}
 	file.close();
 }
-
-/*
-1. 99.9999999 -> 계산값을 문자열로 바꿔서 문자열로 출력
-2. csv 파싱
-3. input 할 때 구분자가 " | "인가.....
-*/
