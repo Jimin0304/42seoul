@@ -437,7 +437,11 @@ void PmergeMe::PmergeDeque::Insertion(std::deque<int> input, int depth)
 
 void PmergeMe::PrintTime(const int &size, const std::string &ct, const double &time)
 {
-	std::cout << std::fixed << "Time to process a range of " << size << " elements with std::" << ct << " : " << time << "s\n";
+	std::ostringstream out;
+    out << std::fixed << std::setprecision(6) << time;
+    std::string str = out.str();
+	str.erase(str.find_last_not_of('0') + 1, std::string::npos);
+	std::cout << std::fixed << "Time to process a range of " << size << " elements with std::" << ct << " : " << str << "s\n";
 }
 
 void PmergeMe::Sort(int argc, char *argv[])
