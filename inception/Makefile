@@ -1,10 +1,10 @@
-VOLUME_PATH		:= /home/jimpark/data
+VOLUME_PATH		:= home/jimpark/data
 
 all: setup
 
 setup:
-	@sudo mkdir -p $(VOLUME_PATH)/mariadb/
-	@sudo mkdir -p $(VOLUME_PATH)/wordpress/
+	@mkdir -p $(VOLUME_PATH)/mariadb/
+	@mkdir -p $(VOLUME_PATH)/wordpress/
 	@echo "Data directory created."
 	@docker compose -f ./srcs/docker-compose.yml up --build -d
 	@echo "Containers started."
@@ -22,7 +22,7 @@ clean:
 	@echo "Containers stopped and images removed."
 
 fclean: clean
-	@sudo rm -rf  $(VOLUME_PATH)
+	@rm -rf  $(VOLUME_PATH)
 	@echo "Data directory removed."
 
 re:
