@@ -1,4 +1,4 @@
-FROM alpine:3.18
+FROM debian:bullseye
 
 RUN apt-get update -y && \
     apt-get upgrade -y && \
@@ -6,9 +6,9 @@ RUN apt-get update -y && \
     mariadb-server \
     mariadb-client
 
-COPY ./conf/mariadb-server.cnf ../../etc/my.cnf.d/
-COPY ./tools/start_mariadb.sh ../../home
+COPY ./conf/mariadb-server.cnf /etc/my.cnf.d/
+COPY ./tools/start_mariadb.sh /home
 
 EXPOSE 3306
 
-ENTRYPOINT ["sh", "/Users/jimpark/home/start_mariadb.sh"]
+ENTRYPOINT ["sh", "/home/start_mariadb.sh"]
