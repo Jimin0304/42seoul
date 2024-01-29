@@ -16,8 +16,8 @@
 server {
         # SSL configuration
 
-        listen 443 ssl default_server;
-        listen [::]:443 ssl default_server;
+        listen 443 ssl;
+        listen [::]:443 ssl;
 
         # SSL setting
         ssl_certificate		/etc/ssl/certs/jimpark.42.fr.crt;
