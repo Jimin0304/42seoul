@@ -16,7 +16,6 @@ if [ ! -e /var/lib/mysql/$MYSQL_DATABASE ]; then # 처음에만 실행되도록 
 
 fi
 
-mysql $MYSQL_DATABASE -u$MYSQL_ROOT -p$MYSQL_ROOT_PASSWORD
 mysqladmin -u$MYSQL_ROOT -p$MYSQL_ROOT_PASSWORD shutdown
 
-exec mysqld_safe
+exec "mysqld_safe"
