@@ -7,6 +7,8 @@ RUN apt-get update -y && \
 COPY ./conf/my.cnf /etc/mysql/
 COPY ./tools/start_mariadb.sh /usr/local/bin/
 
+RUN chmod +x /usr/local/bin/start_mariadb.sh
+
 EXPOSE 3306
 
-ENTRYPOINT ["sh", "/usr/local/bin/start_mariadb.sh"]
+ENTRYPOINT ["start_mariadb.sh"]

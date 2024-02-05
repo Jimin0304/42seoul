@@ -1,10 +1,10 @@
-VOLUME_PATH		:= home/jimpark/data
+VOLUME_PATH		:= /Users/jimpark/data
 
 all: setup
 
 setup:
-	@mkdir -p $(VOLUME_PATH)/mariadb/
-	@mkdir -p $(VOLUME_PATH)/wordpress/
+	@mkdir -p $(VOLUME_PATH)/mariadb
+	@mkdir -p $(VOLUME_PATH)/wordpress
 	@echo "Data directory created."
 	@docker compose -f ./srcs/docker-compose.yml up --build -d
 	@echo "Containers started."
