@@ -10,9 +10,10 @@ RUN mkdir /run/php
 
 COPY ./conf/www.conf /etc/php/7.4/fpm/pool.d/
 COPY ./tools/start_wordpress.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/start_wordpress.sh
 
 WORKDIR /var/www/html
 
 EXPOSE 9000
 
-ENTRYPOINT [ "sh", "/usr/local/bin/start_wordpress.sh" ]
+ENTRYPOINT [ "start_wordpress.sh" ]
