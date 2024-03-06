@@ -1,4 +1,5 @@
 VOLUME_PATH		:= /home/jimpark/data
+HOST_LINK	:= "127.0.0.1 jimpark.42.fr" >> /etc/hosts
 
 all: setup
 
@@ -6,6 +7,7 @@ setup:
 	@mkdir -p $(VOLUME_PATH)/mariadb
 	@mkdir -p $(VOLUME_PATH)/wordpress
 	@echo "Data directory created."
+	@sudo echo $(HOST_LINK)
 	@docker compose -f ./srcs/docker-compose.yml up --build -d
 	@echo "Containers started."
 
@@ -22,7 +24,7 @@ clean:
 	@echo "Containers stopped and images removed."
 
 fclean: clean
-	@rm -rf  $(VOLUME_PATH)
+	@sudo rm -rf  $(VOLUME_PATH)
 	@echo "Data directory removed."
 
 re:
