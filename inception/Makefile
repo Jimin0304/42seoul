@@ -1,4 +1,4 @@
-VOLUME_PATH		:= /Users/jimpark/data
+VOLUME_PATH		:= /home/jimpark/data
 
 all: setup
 

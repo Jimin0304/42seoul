@@ -47,11 +47,11 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /Users/jimpark/data/wordpress
+      device: /home/jimpark/data/wordpress
       o: bind
   mariadb_data:
     driver: local
     driver_opts:
       type: none
-      device: /Users/jimpark/data/mariadb
+      device: /home/jimpark/data/mariadb
       o: bind
