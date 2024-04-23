@@ -31,7 +31,7 @@ void send_all(int socket)
     for (int i = 0; i <= max_fd; i++)
     {
         if (FD_ISSET(i, &wfds) && i != socket)
-            send(i, &wbuf, strlen(wbuf), 0);
+            send(i, wbuf, strlen(wbuf), 0);
     }
 }
 
